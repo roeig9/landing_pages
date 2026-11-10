@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>מעבר ליומן</title>
+<!-- If JavaScript is off, go straight to the calendar. -->
+<noscript><meta http-equiv="refresh" content="0; url=https://calendar.app.google/UFhS6wtjTaaQ3jDP6"></noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSS8GSX1SJ"></script>
+<script>
+  // Redirect page: logs where a booking click came from, then sends the visitor to the calendar.
+  // Link to it as /book?from=report&biz=<business name>
+  var CALENDAR_URL = "https://calendar.app.google/UFhS6wtjTaaQ3jDP6";
+  var done = false;
+  function go() { if (done) return; done = true; location.replace(CALENDAR_URL); }
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-YSS8GSX1SJ');
+
+  var p = new URLSearchParams(location.search);
+  gtag('event', 'book_call_click', {
+    source: p.get('from') || p.get('utm_source') || 'direct',
+    business: (p.get('biz') || '').slice(0, 100),
+    event_callback: go
+  });
+  // Never keep the visitor waiting if analytics is slow or blocked.
+  setTimeout(go, 900);
+</script>
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f2f5f3; color: #52646a; font: 17px "Assistant", system-ui, sans-serif; }
+  a { color: #2f8f5b; }
+</style>
+</head>
+<body>
+  <p>מעבירים אתכם ליומן... אם זה לא קורה, <a href="https://calendar.app.google/UFhS6wtjTaaQ3jDP6">לחצו כאן</a>.</p>
+</body>
+</html>
