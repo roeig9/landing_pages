@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>דוח נוכחות בגוגל</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Secular+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2f5f3; --surface: #fff; --ink: #1c2b30; --ink-soft: #52646a; --line: #d5ddda;
+    --good: #2f8f5b; --good-mid: #8fcca9; --good-soft: #cfe8d9; --warn-soft: #f6e3bd;
+    --bad-soft: #f3d3cf; --none: #f7e9e7; --focus: #1f6f99;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Assistant", system-ui, sans-serif; font-size: 17px; line-height: 1.55; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 56px; }
+  h1, h2, h3 { font-family: "Secular One", "Assistant", sans-serif; font-weight: 400; margin: 0; }
+  h1 { font-size: clamp(28px, 6vw, 38px); line-height: 1.15; }
+  .meta { color: var(--ink-soft); font-size: 15px; margin: 6px 0 0; }
+  .summary {
+    margin: 22px 0 28px; padding: 18px 20px; border-radius: 12px;
+    background: var(--ink); color: #fff; font-size: 20px; line-height: 1.45;
+  }
+  section { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 18px; margin-bottom: 18px; }
+  @media (min-width: 560px) { section { padding: 26px 28px; } }
+  h2 { font-size: 23px; margin-bottom: 6px; }
+  .lead { color: var(--ink-soft); margin: 0 0 16px; }
+
+  /* maps */
+  .maps { display: grid; gap: 22px; }
+  @media (min-width: 640px) { .maps { grid-template-columns: 1fr 1fr; } }
+  .map h3 { font-size: 18px; margin-bottom: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; direction: ltr; }
+  .grid span { aspect-ratio: 1; border-radius: 5px; display: grid; place-items: center; font-size: 12px; font-weight: 600; }
+  .t3 { background: var(--good-mid); } .t10 { background: var(--good-soft); } .t20 { background: var(--warn-soft); }
+  .out { background: var(--none); color: #b58a85; font-weight: 400 !important; }
+  .home { outline: 2.5px solid var(--ink); outline-offset: -2.5px; }
+  .map p { margin: 8px 0 0; font-size: 15px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 16px; font-size: 13.5px; color: var(--ink-soft); }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-inline-end: 5px; }
+  .note { font-size: 13.5px; color: var(--ink-soft); margin: 10px 0 0; }
+
+  /* competitors */
+  table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+  th, td { text-align: start; padding: 9px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--ink-soft); font-size: 14px; }
+  tr.you td { font-weight: 700; background: #f6faf8; }
+  .num { white-space: nowrap; }
+
+  /* findings + actions */
+  .findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .findings li { border-inline-start: 4px solid var(--ink); padding: 2px 14px 2px 0; padding-inline-start: 14px; }
+  .findings strong { display: block; font-size: 18px; }
+  .findings span { color: var(--ink-soft); }
+  .actions { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: a; }
+  .actions li { counter-increment: a; display: grid; grid-template-columns: 32px 1fr; gap: 10px; align-items: start; }
+  .actions li::before {
+    content: counter(a); width: 30px; height: 30px; border-radius: 50%; background: var(--good); color: #fff;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  .actions strong { display: block; }
+  .tag { display: inline-block; font-size: 12.5px; font-weight: 700; border-radius: 6px; padding: 1px 8px; margin-top: 4px; }
+  .tag.self { background: var(--good-soft); color: #1f6a43; }
+  .tag.system { background: #e3e9f6; color: #2b4a86; }
+  .after { margin: 18px 0 0; padding: 14px 16px; background: var(--bg); border-radius: 10px; }
+  .after h3 { font-size: 17px; margin-bottom: 6px; }
+  .after ul { margin: 0; padding-inline-start: 20px; }
+  .after li { margin: 3px 0; }
+
+  .copy { position: relative; background: var(--bg); border-radius: 10px; padding: 16px; white-space: pre-line; }
+  .copy-btn {
+    margin-top: 12px; font: inherit; font-weight: 600; font-size: 15px; cursor: pointer;
+    border: 1.5px solid var(--ink); background: transparent; color: var(--ink); border-radius: 9px; padding: 7px 14px;
+  }
+  .cta { text-align: center; }
+  .cta p { color: var(--ink-soft); margin: 4px 0 16px; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 700; font-size: 17px;
+    background: var(--good); color: #fff; border-radius: 10px; padding: 12px 22px;
+  }
+  .pdf { display: block; margin: 14px auto 0; font: inherit; font-size: 15px; background: none; border: 0; color: var(--ink-soft); text-decoration: underline; cursor: pointer; }
+  button:focus-visible, a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+  @media print {
+    body { background: #fff; font-size: 13px; }
+    main { padding: 0; }
+    section { break-inside: avoid; border-color: #ccc; }
+    .copy-btn, .pdf, .cta .btn { display: none; }
+    .summary { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .grid span, .tag, .actions li::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<main id="report" aria-live="polite"></main>
+
+<!-- The automation fills only this block. Everything else is the fixed template. -->
+<script id="report-data" type="application/json">__REPORT_DATA__</script>
+
+<script>
+(function () {
+  const d = JSON.parse(document.getElementById("report-data").textContent);
+  window.__report = d;
+  const leading = d.scenario === "leading";
+  const F = p => ` data-f="${p}"`;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  // In the "leading" scenario the map is coloured by top 3, otherwise by top 10.
+  function cls(r, i) {
+    let c = r == null ? "out" : r <= 3 ? "t3" : r <= 10 ? (leading ? "t20" : "t10") : r <= 20 ? "t20" : "out";
+    return i === 24 ? c + " home" : c;
+  }
+  const map = (m, mi) => `
+    <div class="map">
+      <h3>${esc(m.service)}</h3>
+      <div class="grid" role="img" aria-label="${esc(m.line)}">
+        ${m.ranks.map((r, i) => `<span class="${cls(r, i)}">${r == null ? "20+" : r}</span>`).join("")}
+      </div>
+      <p${F('maps.' + mi + '.line')}>${esc(m.line)}</p>
+    </div>`;
+
+  const scopeN = d.scope_points || 49;
+  const km = x => x == null ? "–" : (x < 1 ? Math.round(x * 1000) + " מ'" : x + ' ק"מ');
+  const comp = d.competitors.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${km(c.distance_km)}</td><td class="num">${c.reviews ?? "–"} · ${c.rating != null ? c.rating.toFixed(1) : "–"}</td><td class="num">${c.points_ahead} מתוך ${scopeN}</td></tr>`).join("");
+
+  document.getElementById("report").innerHTML = `
+    <header>
+      <h1>${esc(d.owner_first_name)}, ככה רואים את ${esc(d.business_name)} בגוגל</h1>
+      <p class="meta">בדיקה מ-${esc(d.date)} · 49 נקודות סביב העסק, ${d.spacing_km} ק"מ בין נקודה לנקודה</p>
+    </header>
+
+    <p class="summary"${F('summary')}>${esc(d.summary)}</p>
+
+    <section aria-labelledby="h-maps">
+      <h2 id="h-maps">איפה מוצאים אותך</h2>
+      <p class="lead">העסק במרכז המפה, במסגרת. כל משבצת היא נקודה במרחק ${d.spacing_km} ק"מ נוספים ממנו, והמספר הוא המקום שלך בגוגל מפות למי שמחפש משם את השירות שבכותרת המפה. החיפוש נעשה בדיוק במילים האלה, בלי שם עיר.</p>
+      <div class="maps">${d.maps.map(map).join("")}</div>
+      <div class="legend">
+        <span><i class="t3"></i>מקום 1-3</span>
+        <span><i class="${leading ? "t20" : "t10"}"></i>מקום 4-10</span>
+        ${leading ? "" : '<span><i class="t20"></i>מקום 11-20</span>'}
+        <span><i class="out"></i>לא בעשרים הראשונים</span>
+      </div>
+    </section>
+
+    ${d.competitors && d.competitors.length ? `<section aria-labelledby="h-comp">
+      <h2 id="h-comp">${esc(d.competitors_title)}</h2>
+      <table>
+        <thead><tr><th>עסק</th><th>מרחק ממך</th><th>ביקורות · דירוג</th><th>מופיע לפני העסק ב-</th></tr></thead>
+        <tbody>${comp}<tr class="you"><td>${esc(d.business_name)}</td><td></td><td class="num">${d.you.reviews ?? "–"} · ${d.you.rating != null ? d.you.rating.toFixed(1) : "–"}</td><td></td></tr></tbody>
+      </table>
+      ${d.competitors_scope ? `<p class="lead">${esc(d.competitors_scope)}</p>` : ""}
+      <p class="note"${F('competitors_note')}>${esc(d.competitors_note || "")}</p>
+    </section>` : ""}
+
+    <section aria-labelledby="h-why">
+      <h2 id="h-why">למה זה קורה</h2>
+      <ul class="findings">${d.findings.map((f, i) => `<li><strong${F('findings.' + i + '.title')}>${esc(f.title)}</strong><span${F('findings.' + i + '.detail')}>${esc(f.detail)}</span></li>`).join("")}</ul>
+    </section>
+
+    <section aria-labelledby="h-do">
+      <h2 id="h-do">מה צריך לעשות</h2>
+      <ol class="actions">${d.actions.map((a, i) => `<li><div><strong${F('actions.' + i + '.title')}>${esc(a.title)}</strong><span${F('actions.' + i + '.detail')}>${esc(a.detail)}</span><br><span class="tag ${a.type}">${a.type === "self" ? "אפשר לבד, היום" : "מערכת שמקימים פעם אחת"}</span></div></li>`).join("")}</ol>
+      ${d.after_verification && d.after_verification.length ? `
+      <div class="after">
+        <h3>מיד אחרי האימות</h3>
+        <ul>${d.after_verification.map((x, i) => `<li${F('after_verification.' + i)}>${esc(x)}</li>`).join("")}</ul>
+      </div>` : ""}
+    </section>
+
+    ${d.description ? `
+    <section aria-labelledby="h-desc">
+      <h2 id="h-desc">תיאור עסק מוכן להדבקה</h2>
+      <p class="lead">אפשר לשנות כל מילה. בלי טלפון או קישורים, הם כבר מופיעים בפרופיל.</p>
+      <div class="copy" id="desc"${F('description')}>${esc(d.description)}</div>
+      <button class="copy-btn" type="button" id="copyBtn">העתקת התיאור</button>
+    </section>` : ""}
+
+    <section class="cta" aria-labelledby="h-next">
+      <h2 id="h-next">רוצה שנעבור על זה יחד?</h2>
+      <p>שיחה של 20 דקות: נעבור על המפות ונחליט מה מקימים קודם. בעוד חודש נריץ את אותה בדיקה ונראה מה השתנה.</p>
+      <a class="btn" href="${esc(d.cta_url)}" target="_blank" rel="noopener">לתיאום שיחה</a>
+      <button class="pdf" type="button" onclick="window.print()">הורדה כ-PDF</button>
+    </section>`;
+
+  const btn = document.getElementById("copyBtn");
+  if (btn) btn.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(d.description); btn.textContent = "הועתק"; }
+    catch (e) { btn.textContent = "סמנו והעתיקו ידנית"; }
+  });
+})();
+</script>
+</body>
+</html>
