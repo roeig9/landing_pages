@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>בדיקת נוכחות בגוגל לעסק שלך</title>
+<meta name="description" content="בדיקה חינמית: איפה מוצאים את העסק שלך בגוגל מפות, מי המתחרים, ומה אפשר לשפר מיד.">
+<meta property="og:title" content="בדיקת נוכחות בגוגל לעסק שלך">
+<meta property="og:description" content="בדיקה חינמית: איפה מוצאים את העסק שלך בגוגל מפות, מי המתחרים, ומה אפשר לשפר מיד.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSS8GSX1SJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YSS8GSX1SJ');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Secular+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2f5f3;
+    --surface: #ffffff;
+    --ink: #1c2b30;
+    --ink-soft: #52646a;
+    --line: #d5ddda;
+    --good: #2f8f5b;
+    --good-soft: #cfe8d9;
+    --warn-soft: #f6e3bd;
+    --bad: #d6655a;
+    --bad-soft: #f3d3cf;
+    --focus: #1f6f99;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Assistant", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 28px 16px 48px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .head { order: 1; } .form-area { order: 2; } .more { order: 3; }
+  .lede { margin-bottom: 0 !important; }
+  @media (min-width: 960px) {
+    .wrap {
+      grid-template-columns: 4fr 6fr; column-gap: 56px; row-gap: 20px; padding-top: 40px;
+      grid-template-areas: "head form" "more form"; align-items: start;
+    }
+    .head { grid-area: head; } .more { grid-area: more; } .form-area { grid-area: form; }
+  }
+
+  /* ---------- intro ---------- */
+  h1 {
+    font-family: "Secular One", "Assistant", sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 38px);
+    line-height: 1.15;
+    margin: 0 0 10px;
+    max-width: 16ch;
+  }
+  .lede { color: var(--ink-soft); font-size: 17px; margin: 0 0 20px; max-width: 44ch; }
+
+  .grid-figure { margin: 0 0 20px; }
+  .rank-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    width: min(100%, 260px);
+    direction: ltr;
+  }
+  .rank-grid span {
+    aspect-ratio: 1;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .rank-grid .g { background: var(--good-soft); }
+  .rank-grid .w { background: var(--warn-soft); }
+  .rank-grid .b { background: var(--bad-soft); }
+  .rank-grid .home { background: var(--good); color: #fff; outline: 2px solid var(--ink); outline-offset: -2px; }
+  .grid-figure figcaption { color: var(--ink-soft); font-size: 14px; margin-top: 8px; max-width: 38ch; }
+
+  .gets-title { font-family: "Secular One", "Assistant", sans-serif; font-weight: 400; font-size: 19px; margin: 0 0 8px; }
+  .gets { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-width: 44ch; }
+  .gets li { padding-inline-start: 20px; position: relative; }
+  .gets li::before {
+    content: ""; position: absolute; inset-inline-start: 0; top: 0.6em;
+    width: 9px; height: 9px; border-radius: 3px; background: var(--good);
+  }
+  .bonus { margin: 12px 0 0; font-size: 15px; color: var(--ink-soft); max-width: 44ch; }
+  .bonus strong { color: var(--ink); }
+
+  .home-link {
+    display: inline-block; margin-top: 18px;
+    color: var(--ink); font-weight: 600; text-decoration: none;
+    border: 1.5px solid var(--ink); border-radius: 10px; padding: 8px 16px;
+  }
+  .home-link:hover { background: var(--ink); color: #fff; }
+
+  /* ---------- form ---------- */
+  form, .done {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 18px;
+  }
+  @media (min-width: 560px) { form, .done { padding: 26px 30px; } }
+  fieldset { border: 0; margin: 0 0 18px; padding: 0; }
+  legend {
+    font-family: "Secular One", "Assistant", sans-serif;
+    font-size: 18px;
+    padding: 0;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  legend .step {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--ink); color: #fff;
+    display: grid; place-items: center;
+    font-family: "Assistant", sans-serif; font-weight: 700; font-size: 13px;
+  }
+
+  .row { display: grid; gap: 10px 14px; grid-template-columns: 1fr; margin-bottom: 10px; }
+  @media (min-width: 560px) {
+    .row.two { grid-template-columns: 1fr 1fr; }
+    .row.three { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .field { min-width: 0; }
+
+  label { display: block; font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+  .opt { font-weight: 400; color: var(--ink-soft); font-size: 14px; }
+  .hint { color: var(--ink-soft); font-size: 13.5px; margin: -2px 0 10px; }
+
+  input[type=text], input[type=tel], input[type=email], input[type=url] {
+    width: 100%;
+    font: inherit;
+    color: var(--ink);
+    background: #fbfcfc;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 11px;
+    min-height: 42px;
+  }
+  input[type=tel], input[type=email], input[type=url] { direction: ltr; text-align: right; }
+  input::placeholder { color: #93a2a6; }
+  input:focus-visible, button:focus-visible, a:focus-visible, .choice input:focus-visible {
+    outline: 3px solid var(--focus); outline-offset: 2px;
+  }
+  input[aria-invalid=true] { border-color: var(--bad); background: #fff8f7; }
+  .error { color: #b3473d; font-size: 13px; margin-top: 3px; display: none; }
+  .field.has-error .error { display: block; }
+
+  .priority { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin: -2px 0 10px; font-size: 15px; }
+  .priority[hidden] { display: none; }
+  .priority > span { font-weight: 600; }
+  .choice { display: inline-flex; align-items: center; gap: 6px; font-weight: 400; font-size: 15px; cursor: pointer; margin: 0; }
+  .choice input { width: 16px; height: 16px; accent-color: var(--good); margin: 0; }
+
+  .checks { display: grid; gap: 8px; margin: 4px 0 16px; }
+  .check { display: flex; gap: 9px; align-items: flex-start; font-weight: 400; font-size: 14.5px; color: var(--ink-soft); margin: 0; }
+  .check input { width: 17px; height: 17px; margin-top: 2px; accent-color: var(--good); flex: none; }
+
+  .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  form { position: relative; }
+
+  button[type=submit], .done-btn {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    font: inherit; font-weight: 700; font-size: 17px;
+    color: #fff; background: var(--good);
+    border: 0; border-radius: 10px;
+    padding: 12px 18px; min-height: 48px;
+    cursor: pointer;
+  }
+  button[type=submit]:hover, .done-btn:hover { background: #277a4d; }
+  button[disabled] { opacity: .65; cursor: progress; }
+  .form-error { display: none; margin: 10px 0 0; color: #b3473d; font-size: 14px; }
+  .form-error.show { display: block; }
+  .small { color: var(--ink-soft); font-size: 13.5px; margin: 8px 0 0; text-align: center; }
+
+  .done { display: none; }
+  .done.show { display: block; }
+  .done h2 { font-family: "Secular One", "Assistant", sans-serif; font-weight: 400; font-size: 24px; margin: 0 0 8px; }
+  .done p { margin: 0 0 10px; color: var(--ink-soft); }
+  .done-btn { margin-top: 14px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .rank-grid span { animation: pop .35s ease-out both; animation-delay: calc(var(--i) * 18ms); }
+    @keyframes pop { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <section class="head" aria-labelledby="title">
+    <h1 id="title">איפה מוצאים את העסק שלך בגוגל?</h1>
+    <p class="lede">מלאו כמה פרטים, ונבדוק איך העסק מופיע בגוגל מפות למי שמחפש את השירות שלכם באזור. הבדיקה הראשונה בחינם.</p>
+  </section>
+
+  <section class="more" aria-label="מה מקבלים">
+    <figure class="grid-figure">
+      <div class="rank-grid" id="demoGrid" aria-hidden="true"></div>
+      <figcaption>העסק נמצא במרכז המפה, וכל משבצת היא קילומטר נוסף ממנו. המספר מראה באיזה מקום העסק מופיע בגוגל למי שמחפש משם.</figcaption>
+    </figure>
+
+    <h2 class="gets-title">מה יש בדוח</h2>
+    <ul class="gets">
+      <li>מפה כזו לכל שירות שתבחרו, עד שניים</li>
+      <li>מי המתחרים שמופיעים לפניכם, ולמה</li>
+      <li>פעולות שאפשר לבצע מיד כדי להופיע גבוה יותר</li>
+    </ul>
+    <p class="bonus"><strong>ללקוחות ליווי</strong> בדיקות חוזרות כלולות, כדי לראות על המפה איך השינויים עובדים.</p>
+
+    <a class="home-link" href="/" data-home>איך אני עוזר לעסקים קטנים לגדול</a>
+  </section>
+
+  <section class="form-area" aria-label="טופס בקשה לבדיקה">
+    <form id="scanForm" novalidate>
+      <fieldset>
+        <legend><span class="step">1</span>העסק</legend>
+        <div class="row three">
+          <div class="field">
+            <label for="business_name">שם העסק</label>
+            <input type="text" id="business_name" name="business_name" autocomplete="organization" placeholder="כמו שמופיע בגוגל" required>
+            <span class="error">צריך שם עסק</span>
+          </div>
+          <div class="field">
+            <label for="city">עיר</label>
+            <input type="text" id="city" name="city" autocomplete="address-level2" required>
+            <span class="error">צריך עיר</span>
+          </div>
+          <div class="field">
+            <label for="maps_url">קישור בגוגל מפות</label>
+            <input type="url" id="maps_url" name="maps_url" inputmode="url" placeholder="לא חובה" title="בגוגל מפות: פותחים את העסק, לוחצים שיתוף ומעתיקים את הקישור">
+            <span class="error">זה לא קישור לגוגל מפות</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step">2</span>מה לבדוק</legend>
+        <div class="row two">
+          <div class="field">
+            <label for="service_1">שירות ראשון</label>
+            <input type="text" id="service_1" name="service_1" placeholder="למשל: מאמן כושר אישי" required>
+            <span class="error">צריך לפחות שירות אחד</span>
+          </div>
+          <div class="field">
+            <label for="service_2">שירות שני <span class="opt">(לא חובה)</span></label>
+            <input type="text" id="service_2" name="service_2" placeholder="למשל: מסעדה איטלקית">
+          </div>
+        </div>
+        <p class="hint">כתבו כמו שלקוח מחפש בגוגל: "הסרת שיער בלייזר", "פיזיותרפיה לספורטאים", "המבורגר במשלוח".</p>
+
+        <div class="priority" id="priorityField" role="radiogroup" aria-labelledby="priorityLabel" hidden>
+          <span id="priorityLabel">חשוב לי יותר לגדול ב:</span>
+          <label class="choice"><input type="radio" name="priority" value="service_1" checked><span id="prio1Text">השירות הראשון</span></label>
+          <label class="choice"><input type="radio" name="priority" value="service_2"><span id="prio2Text">השירות השני</span></label>
+          <label class="choice"><input type="radio" name="priority" value="both"><span>שניהם</span></label>
+        </div>
+
+        <div class="field">
+          <label for="areas">מאיפה מגיעים אליכם לקוחות? <span class="opt">(לא חובה)</span></label>
+          <input type="text" id="areas" name="areas" placeholder="למשל: גבעתיים, רמת גן, תל אביב">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step">3</span>לאן לשלוח את הדוח</legend>
+        <div class="row three">
+          <div class="field">
+            <label for="full_name">שם</label>
+            <input type="text" id="full_name" name="full_name" autocomplete="name" required>
+            <span class="error">איך לפנות אליכם?</span>
+          </div>
+          <div class="field">
+            <label for="phone">נייד</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="050-0000000" required>
+            <span class="error">מספר נייד, למשל 050-1234567</span>
+          </div>
+          <div class="field">
+            <label for="email">אימייל (לשם יישלח הדוח)</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <span class="error">לאן לשלוח את הדוח?</span>
+          </div>
+        </div>
+
+        <div class="checks">
+          <div class="field">
+            <label class="check">
+              <input type="checkbox" id="consent" name="consent" required>
+              <span>אני מאשר/ת שמירה של הפרטים כדי להכין את הבדיקה וליצור איתי קשר לגביה (<a href="/privacy/" target="_blank" rel="noopener">מדיניות פרטיות</a>).</span>
+            </label>
+            <span class="error">צריך אישור כדי שנוכל לשלוח את הדוח</span>
+          </div>
+          <label class="check">
+            <input type="checkbox" id="reminder" name="reminder">
+            <span>אשמח לקבל תזכורת בעוד חודש לבדיקה חוזרת, כדי לראות אם יש שינוי.</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="hp" aria-hidden="true">
+        <label for="company_site">אתר החברה</label>
+        <input type="text" id="company_site" name="company_site" tabindex="-1" autocomplete="off">
+      </div>
+
+      <input type="hidden" name="utm_source">
+      <input type="hidden" name="utm_medium">
+      <input type="hidden" name="utm_campaign">
+      <input type="hidden" name="utm_content">
+      <input type="hidden" name="referrer">
+      <input type="hidden" name="page">
+
+      <button type="submit" id="submitBtn">שלחו לי את הבדיקה</button>
+      <p class="form-error" id="formError" role="alert">משהו נתקע בשליחה. נסו שוב בעוד רגע.</p>
+      <p class="small">בדיקה אחת חינם לכל עסק. בלי התחייבות.</p>
+    </form>
+
+    <div class="done" id="done" role="status" tabindex="-1">
+      <h2>קיבלנו, תודה</h2>
+      <p>הבדיקה התחילה. אני עובר אישית על כל דוח לפני שהוא יוצא, והוא יגיע אליכם במייל תוך יום עסקים. אם הוא לא מגיע, כדאי להציץ גם בתיקיית הספאם.</p>
+      <p>בינתיים, אפשר להכיר אותי ואת מה שאני עושה עם עסקים קטנים.</p>
+      <a class="done-btn" href="/" data-home>לעמוד הראשי</a>
+      <p class="small">נעביר אתכם לשם אוטומטית בעוד כמה שניות.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // ---- settings ----
+  // Paste the Production URL of the n8n Webhook node here.
+  const WEBHOOK_URL = "https://rgconsultant.app.n8n.cloud/webhook/business-scan";
+  // Your main landing page. "/" works when this page lives on the same site.
+  const HOME_URL = "/";
+  // Seconds to show the thank-you message before moving to the main page.
+  const REDIRECT_AFTER_SECONDS = 8;
+
+  document.querySelectorAll("[data-home]").forEach(a => a.href = HOME_URL);
+
+  // ---- demo grid (real numbers from a pilot scan, no business name) ----
+  (function () {
+    const ranks = [41,40,28,24,33,41,46, 46,38,21,16,18,28,45, 52,28,22,6,14,23,29,
+                   43,20,6,1,5,15,27, 28,17,7,4,5,11,25, 29,17,12,8,8,11,24, 40,26,19,12,14,18,24];
+    const grid = document.getElementById("demoGrid");
+    ranks.forEach((r, i) => {
+      const s = document.createElement("span");
+      s.textContent = r;
+      s.className = i === 24 ? "home" : r <= 10 ? "g" : r <= 20 ? "w" : "b";
+      s.style.setProperty("--i", i);
+      grid.appendChild(s);
+    });
+  })();
+
+  const form = document.getElementById("scanForm");
+  const s1 = form.service_1, s2 = form.service_2;
+  const prioField = document.getElementById("priorityField");
+
+  function syncPriority() {
+    prioField.hidden = !s2.value.trim();
+    document.getElementById("prio1Text").textContent = s1.value.trim() || "השירות הראשון";
+    document.getElementById("prio2Text").textContent = s2.value.trim() || "השירות השני";
+  }
+  s1.addEventListener("input", syncPriority);
+  s2.addEventListener("input", syncPriority);
+
+  (function () {
+    const p = new URLSearchParams(location.search);
+    ["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k => {
+      form.elements[k].value = p.get(k) || "";
+    });
+    form.elements.referrer.value = document.referrer || "";
+    form.elements.page.value = location.href;
+  })();
+
+  function normalizePhone(v) {
+    let d = v.replace(/[^\d+]/g, "");
+    if (d.startsWith("+972")) d = "0" + d.slice(4);
+    if (d.startsWith("972")) d = "0" + d.slice(3);
+    return d;
+  }
+  function normalizeUrl(v) {
+    v = v.trim();
+    return v && !/^https?:\/\//i.test(v) ? "https://" + v : v;
+  }
+  const checks = {
+    business_name: v => v.trim().length >= 2,
+    city: v => v.trim().length >= 2,
+    maps_url: v => !v.trim() || /^https?:\/\/(maps\.app\.goo\.gl|goo\.gl\/maps|(www\.)?google\.[a-z.]+\/maps|maps\.google\.)/i.test(normalizeUrl(v)),
+    service_1: v => v.trim().length >= 2,
+    full_name: v => v.trim().length >= 2,
+    phone: v => /^05\d{8}$/.test(normalizePhone(v)),
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+  };
+  function setError(el, bad) {
+    el.closest(".field").classList.toggle("has-error", bad);
+    el.setAttribute("aria-invalid", bad ? "true" : "false");
+  }
+  Object.keys(checks).forEach(name => {
+    const el = form.elements[name];
+    el.addEventListener("blur", () => { if (el.value) setError(el, !checks[name](el.value)); });
+    el.addEventListener("input", () => {
+      if (el.closest(".field").classList.contains("has-error")) setError(el, !checks[name](el.value));
+    });
+  });
+  function validate() {
+    let first = null;
+    for (const [name, fn] of Object.entries(checks)) {
+      const el = form.elements[name];
+      const bad = !fn(el.value);
+      setError(el, bad);
+      if (bad && !first) first = el;
+    }
+    const consent = form.elements.consent;
+    consent.closest(".field").classList.toggle("has-error", !consent.checked);
+    if (!consent.checked && !first) first = consent;
+    if (first) first.focus();
+    return !first;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    document.getElementById("formError").classList.remove("show");
+    if (form.elements.company_site.value) return; // spam
+    if (!validate()) return;
+
+    const f = form.elements;
+    const services = [f.service_1.value.trim(), f.service_2.value.trim()].filter(Boolean);
+    const payload = {
+      business: {
+        name: f.business_name.value.trim(),
+        city: f.city.value.trim(),
+        maps_url: normalizeUrl(f.maps_url.value) || null,
+      },
+      services,
+      priority: services.length > 1 ? form.querySelector("input[name=priority]:checked").value : "service_1",
+      areas: f.areas.value.split(/[,،\n]/).map(s => s.trim()).filter(Boolean),
+      contact: {
+        name: f.full_name.value.trim(),
+        phone: normalizePhone(f.phone.value),
+        email: f.email.value.trim(),
+        consent: true,
+        reminder_in_a_month: f.reminder.checked,
+      },
+      source: {
+        utm_source: f.utm_source.value, utm_medium: f.utm_medium.value,
+        utm_campaign: f.utm_campaign.value, utm_content: f.utm_content.value,
+        referrer: f.referrer.value, page: f.page.value,
+      },
+      submitted_at: new Date().toISOString(),
+    };
+
+    const btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    btn.textContent = "שולח...";
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      if (typeof window.gtag === "function") window.gtag("event", "scan_submit", { source: payload.source.utm_source || "direct" });
+      form.style.display = "none";
+      const done = document.getElementById("done");
+      done.classList.add("show");
+      done.focus();
+      setTimeout(() => { location.href = HOME_URL; }, REDIRECT_AFTER_SECONDS * 1000);
+    } catch (err) {
+      document.getElementById("formError").classList.add("show");
+      btn.disabled = false;
+      btn.textContent = "שלחו לי את הבדיקה";
+    }
+  });
+</script>
+</body>
+</html>
