@@ -1,0 +1,79 @@
+<style>
+  [data-f] { outline: 1px dashed #b9b2a3; outline-offset: 3px; border-radius: 4px; cursor: text; }
+  [data-f]:focus { outline: 2px solid #1f6f5c; background: #fffdf5; }
+  [data-f].changed { background: #fff6d6; }
+  #adm { position: sticky; bottom: 0; z-index: 10; background: #1d2b28; color: #fff; padding: 14px 16px 16px; box-shadow: 0 -4px 18px rgba(0,0,0,.18); font-family: inherit; }
+  #adm .in { max-width: 760px; margin: 0 auto; display: grid; gap: 10px; }
+  #adm .st { font-size: 14px; opacity: .9; }
+  #adm .pr { font-size: 13px; background: #5a2b22; padding: 6px 10px; border-radius: 6px; }
+  #adm textarea { width: 100%; box-sizing: border-box; min-height: 58px; border-radius: 8px; border: 0; padding: 8px 10px; font: inherit; font-size: 15px; direction: rtl; }
+  #adm .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  #adm button { border: 0; border-radius: 8px; padding: 10px 14px; font: inherit; font-size: 15px; font-weight: bold; cursor: pointer; }
+  #adm .save { background: #e9e4d8; color: #222; }
+  #adm .rew { background: #c9dcd6; color: #1d2b28; }
+  #adm .ok { background: #3fae8c; color: #fff; margin-inline-start: auto; }
+  #adm button:disabled { opacity: .5; cursor: wait; }
+  #adm .msg { font-size: 14px; min-height: 1em; }
+  @media print { #adm { display: none; } [data-f] { outline: none; } }
+</style>
+<div id="adm" dir="rtl">
+  <div class="in">
+    <div class="st" id="admSt"></div>
+    <div class="pr" id="admPr" hidden></div>
+    <textarea id="admNote" placeholder="הערות על הניסוח. למשל: קצר מדי, לפנות בלשון יחיד, להדגיש יותר את האוטומציה. הערות כאלה נשמרות ומשפרות את הדוחות הבאים. הערות על הנתונים עצמם (מי נבדק, איך נספר) נשמרות ברשימה נפרדת לשינויים במערכת."></textarea>
+    <div class="row">
+      <button class="save" id="admSave" type="button">שמירה</button>
+      <button class="rew" id="admRew" type="button">כתיבה מחדש לפי ההערות</button>
+      <button class="ok" id="admOk" type="button">אישור ושליחה ללקוח</button>
+    </div>
+    <div class="msg" id="admMsg" role="status"></div>
+  </div>
+</div>
+<script>
+(function () {
+  const A = window.__ADMIN__, d = window.__report;
+  const $ = id => document.getElementById(id);
+  const labels = { draft: 'טיוטה. הלקוח עוד לא ראה את הדוח.', ready: 'הדוח נשלח ללקוח. שינויים שתשמור יופיעו אצלו מיד.' };
+  $('admSt').textContent = 'מצב עריכה · ' + (labels[A.status] || A.status) + ' לחיצה על כל טקסט עם מסגרת מאפשרת לתקן אותו.';
+  if (A.problems) { $('admPr').hidden = false; $('admPr').textContent = 'הבדיקה האוטומטית מצאה: ' + A.problems; }
+  if (A.status === 'ready') $('admOk').textContent = 'שמירה ושליחה חוזרת ללקוח';
+
+  const fields = document.querySelectorAll('[data-f]');
+  fields.forEach(el => {
+    try { el.contentEditable = 'plaintext-only'; } catch (e) { el.contentEditable = 'true'; }
+    if (el.contentEditable !== 'plaintext-only') el.contentEditable = 'true';
+    el.dataset.orig = el.innerText.trim();
+    el.addEventListener('input', () => el.classList.toggle('changed', el.innerText.trim() !== el.dataset.orig));
+  });
+
+  function edits() {
+    const e = {};
+    fields.forEach(el => { e[el.dataset.f] = el.innerText.replace(/ /g, ' ').trim(); });
+    return e;
+  }
+  async function send(action) {
+    const note = $('admNote').value.trim();
+    if (action === 'rewrite' && !note) { $('admMsg').textContent = 'כדאי לכתוב בהערות מה לשנות, ואז ללחוץ על כתיבה מחדש.'; return; }
+    if (action === 'approve' && !confirm(A.status === 'ready' ? 'לשמור ולשלוח שוב את הקישור ללקוח?' : 'לאשר ולשלוח את הדוח ללקוח?')) return;
+    document.querySelectorAll('#adm button').forEach(b => b.disabled = true);
+    $('admMsg').textContent = action === 'rewrite' ? 'כותב מחדש, זה לוקח כחצי דקה...' : 'שומר...';
+    try {
+      const res = await fetch(location.origin + '/webhook/report-admin', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: A.id, k: A.k, action, edits: edits(), comment: note }),
+      });
+      const r = await res.json().catch(() => ({}));
+      if (!res.ok || !r.ok) throw new Error(r.message || ('HTTP ' + res.status));
+      $('admMsg').textContent = r.message || 'נשמר';
+      if (action !== 'approve') setTimeout(() => location.reload(), 900);
+      else document.querySelectorAll('#adm button').forEach(b => b.disabled = false);
+    } catch (err) {
+      $('admMsg').textContent = 'לא הצליח: ' + err.message;
+      document.querySelectorAll('#adm button').forEach(b => b.disabled = false);
+    }
+  }
+  $('admSave').onclick = () => send('save');
+  $('admRew').onclick = () => send('rewrite');
+  $('admOk').onclick = () => send('approve');
+})();
+</script>
