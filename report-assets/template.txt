@@ -43,6 +43,17 @@
   .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-inline-end: 5px; }
   .note { font-size: 13.5px; color: var(--ink-soft); margin: 10px 0 0; }
 
+  /* nearby businesses */
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .stat { background: var(--bg); border-radius: 12px; padding: 14px 16px; text-align: center; }
+  .stat b { display: block; font-family: "Secular One", "Assistant", sans-serif; font-weight: 400; font-size: 44px; line-height: 1.1; }
+  .stat span { display: block; font-weight: 600; }
+  .stat small { display: block; color: var(--ink-soft); font-size: 14px; margin-top: 2px; }
+  .closest { list-style: none; margin: 0 0 4px; padding: 0; font-size: 15.5px; }
+  .closest li { padding: 7px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; }
+  .closest li span { color: var(--ink-soft); white-space: nowrap; }
+  .takeaway { margin: 14px 0 0; padding: 12px 14px; border-inline-start: 4px solid var(--good); background: #f6faf8; font-weight: 600; }
+
   /* competitors */
   table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
   th, td { text-align: start; padding: 9px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -89,7 +100,7 @@
     main { padding: 0; }
     section { break-inside: avoid; border-color: #ccc; }
     .copy-btn, .pdf, .cta .btn { display: none; }
-    .summary { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .summary, .stat, .takeaway { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .grid span, .tag, .actions li::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
@@ -126,6 +137,22 @@
   const km = x => x == null ? "–" : (x < 1 ? Math.round(x * 1000) + " מ'" : x + ' ק"מ');
   const comp = d.competitors.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${km(c.distance_km)}</td><td class="num">${c.reviews ?? "–"} · ${c.rating != null ? c.rating.toFixed(1) : "–"}</td><td class="num">${c.points_ahead} מתוך ${scopeN}</td></tr>`).join("");
 
+  // Nearby businesses: counts from a Google Maps search around the business. "more" means the search stopped at its limit.
+  const n = d.nearby;
+  const cnt = (x, more) => more ? x + "+" : String(x);
+  const kindLine = (same, all, more) => !n.kind || more ? "" : same === all ? (all ? `כולם רשומים כ"${esc(n.kind)}"` : "") : `${same} מהם רשומים כ"${esc(n.kind)}"`;
+  const nearby = n ? `<section aria-labelledby="h-near">
+      <h2 id="h-near">${esc(n.title || "כמה עסקים יש לידך")}</h2>
+      <p class="lead">עסקים שגוגל מציג כשמחפשים "${esc(n.search)}", בלי העסק שלך.</p>
+      <div class="stats">
+        <div class="stat"><b>${cnt(n.within_1km, n.within_1km_more)}</b><span>עד קילומטר ממך</span><small>${kindLine(n.within_1km_same_kind, n.within_1km, n.within_1km_more)}</small></div>
+        <div class="stat"><b>${cnt(n.within_3km, n.within_3km_more)}</b><span>עד 3 ק"מ ממך</span><small>${kindLine(n.within_3km_same_kind, n.within_3km, n.within_3km_more)}</small></div>
+      </div>
+      ${n.closest && n.closest.length ? `<h3 style="font-size:17px;margin-bottom:4px">הכי קרובים אליך</h3>
+      <ul class="closest">${n.closest.map(c => `<li>${esc(c.name)}<span>${km(c.km)} · ${c.reviews ?? 0} ביקורות</span></li>`).join("")}</ul>` : ""}
+      ${n.note ? `<p class="takeaway"${F('nearby.note')}>${esc(n.note)}</p>` : ""}
+    </section>` : "";
+
   document.getElementById("report").innerHTML = `
     <header>
       <h1>${esc(d.owner_first_name)}, ככה רואים את ${esc(d.business_name)} בגוגל</h1>
@@ -145,6 +172,8 @@
         <span><i class="out"></i>לא בעשרים הראשונים</span>
       </div>
     </section>
+
+    ${nearby}
 
     ${d.competitors && d.competitors.length ? `<section aria-labelledby="h-comp">
       <h2 id="h-comp">${esc(d.competitors_title)}</h2>
