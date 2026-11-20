@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /report-assets/
+Disallow: /book
+
+Sitemap: https://roeigrimberg.netlify.app/sitemap.xml
