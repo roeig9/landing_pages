@@ -180,7 +180,9 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime);box-shadow:0 0 
 
   <div class="done" id="done" role="status">
     <h2>קיבלתי, תודה!</h2>
-    <p>אעבור על השאלון ואחזור אליך לתאם שיחה. בשיחה נעבור עליו יחד, נשלים את מה שחסר, ונחליט מה הבוט עונה ומה הוא מעביר אליך.</p>
+    <p>אעבור על השאלון לפני השיחה, ובשיחה נשלים יחד את מה שחסר ונחליט מה הבוט עונה ומה הוא מעביר אליך.</p>
+    <p style="margin:18px 0"><a class="btn" id="bookLink" href="https://roeigrimberg.netlify.app/book?from=intake" style="text-decoration:none">לקביעת שיחה</a></p>
+    <p style="color:var(--muted);font-size:1rem">אפשר לקבוע כבר עכשיו, לכל מועד החל מעוד יומיים. אם נוח יותר, אפשר גם לחכות למייל ממני עם הצעה לזמן.</p>
     <p>רועי גרימברג</p>
   </div>
 </main>
@@ -293,6 +295,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime);box-shadow:0 0 
       if (!res.ok) throw new Error(res.status);
       try { localStorage.removeItem(KEY); } catch (e2) {}
       if (typeof gtag === 'function') gtag('event', 'intake_submit', { source: d.source || 'direct' });
+      document.getElementById('bookLink').href = 'https://roeigrimberg.netlify.app/book?from=intake&biz=' + encodeURIComponent(d.business.name);
       form.style.display = 'none';
       document.getElementById('done').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
