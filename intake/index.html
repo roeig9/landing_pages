@@ -10,54 +10,85 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YSS8GSX1SJ');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Secular+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;800&family=Assistant:wght@400;600;700&display=swap">
 <style>
-  :root { --bg:#f2f5f3; --surface:#fff; --ink:#1c2b30; --ink-soft:#52646a; --line:#d5ddda; --good:#2f8f5b; --good-soft:#cfe8d9; --bad:#d6655a; --focus:#1f6f99; }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font-family:"Assistant",system-ui,sans-serif; font-size:16px; line-height:1.55; }
-  .wrap { max-width:760px; margin:0 auto; padding:32px 16px 64px; }
-  h1 { font-family:"Secular One","Assistant",sans-serif; font-weight:400; font-size:clamp(28px,5vw,38px); line-height:1.2; margin:0 0 12px; }
-  .lede { color:var(--ink-soft); font-size:18px; margin:0 0 8px; }
-  .note { color:var(--ink-soft); font-size:15px; margin:0 0 24px; }
-  fieldset { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:20px 20px 8px; margin:0 0 18px; }
-  legend { font-family:"Secular One","Assistant",sans-serif; font-size:20px; padding:0 6px; }
-  .why { color:var(--ink-soft); font-size:14.5px; margin:-4px 0 14px; }
-  label { display:block; font-weight:600; margin:0 0 4px; }
-  .hint { display:block; font-weight:400; color:var(--ink-soft); font-size:14px; }
-  input[type=text], input[type=email], input[type=tel], textarea { width:100%; font:inherit; color:inherit; background:#fff; border:1px solid var(--line); border-radius:8px; padding:9px 11px; }
-  textarea { min-height:78px; resize:vertical; }
-  input:focus, textarea:focus { outline:2px solid var(--focus); outline-offset:1px; border-color:var(--focus); }
-  .f { margin:0 0 14px; }
-  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  @media (max-width:560px) { .row2 { grid-template-columns:1fr; } }
-  .item { border:1px dashed var(--line); border-radius:10px; padding:14px 14px 2px; margin:0 0 12px; }
-  .item h3 { margin:0 0 10px; font-size:16px; }
-  .add { font:inherit; font-weight:600; color:var(--focus); background:none; border:1px dashed var(--focus); border-radius:8px; padding:7px 14px; cursor:pointer; margin:0 0 14px; }
-  .checks label, .radios label { font-weight:400; display:flex; gap:8px; align-items:flex-start; margin:0 0 6px; }
-  .checks input, .radios input { margin-top:5px; }
-  .req { color:var(--bad); }
-  .consent { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin:0 0 18px; }
-  .consent label { font-weight:400; display:flex; gap:8px; align-items:flex-start; }
-  .consent input { margin-top:5px; }
-  button.send { font:inherit; font-weight:700; font-size:18px; color:#fff; background:var(--good); border:0; border-radius:999px; padding:13px 30px; cursor:pointer; }
-  button.send[disabled] { opacity:.6; cursor:default; }
-  .msg { margin:14px 0 0; font-weight:600; }
-  .msg.err { color:var(--bad); }
-  .saved { color:var(--ink-soft); font-size:14px; margin:10px 0 0; }
-  .done { display:none; background:var(--good-soft); border-radius:14px; padding:24px; }
-  .done h2 { margin:0 0 8px; font-family:"Secular One","Assistant",sans-serif; font-weight:400; }
-  .hp { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+:root{
+  --bg:#F9FAFB; --bg-2:#EEF2F5; --surface:#FFFFFF; --ink:#1F2933; --muted:#5B6670; --line:#DCE3E8;
+  --lime:#2EC4B6; --on-lime:#0F2421; --ok:#0F8A7E; --glow:rgba(46,196,182,.22); --bad:#C2453A;
+  --btn-bg:#1F2933; --btn-fg:#FFFFFF; --btn-hover:#323F4B;
+  --display:"Heebo","Assistant",system-ui,sans-serif;
+  --body:"Assistant",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#121417; --bg-2:#1A1D21; --surface:#212529; --ink:#F1F3F5; --muted:#ADB5BD; --line:#343A40;
+  --ok:#2EC4B6; --bad:#F08A80; --btn-bg:#EEF2F5; --btn-fg:#1F2933; --btn-hover:#DCE3E8; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.7;direction:rtl}
+.wrap{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.01em;line-height:1.18;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
+.band{background:var(--bg-2)}
+header .wrap{display:flex;align-items:center;padding-block:20px}
+.brand{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;text-decoration:none}
+.brand span{color:var(--muted);font-family:var(--body);font-size:.95rem;font-weight:600;letter-spacing:0;margin-inline-start:10px}
+.hero{padding-block:clamp(24px,4vw,48px) clamp(40px,6vw,64px)}
+.eyebrow{display:inline-block;background:var(--lime);color:var(--on-lime);font-size:.8rem;font-weight:700;letter-spacing:.04em;padding:3px 12px;border-radius:999px}
+h1{font-size:clamp(2rem,4.6vw,3rem);margin-block:16px 18px}
+.lede{font-size:1.15rem;color:var(--muted);max-width:56ch}
+.note{margin-top:16px;border-inline-start:4px solid var(--lime);padding-inline-start:14px;font-weight:600;max-width:60ch;font-size:1rem}
+main{padding-block:40px 80px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px 26px 12px;margin:0 0 20px;min-width:0}
+.card h2{font-size:1.45rem;margin-bottom:6px}
+.why{color:var(--muted);font-size:1rem;margin:0 0 18px}
+.card > h2 + .f, .card > h2 + .row2, .card > h2 + .checks, .card > h2 + .radios, .card > h2 + div{margin-top:16px}
+label{display:block;font-weight:700;font-size:1rem;margin:0 0 6px}
+.hint{display:block;font-weight:400;color:var(--muted);font-size:.9rem}
+input[type=text],input[type=email],input[type=tel],textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:84px;resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--lime);box-shadow:0 0 0 4px var(--glow)}
+.f{margin:0 0 16px;min-width:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
+@media (max-width:600px){.row2{grid-template-columns:1fr}}
+.item{border:1px dashed var(--line);border-radius:14px;padding:18px 18px 4px;margin:0 0 14px}
+.item h3{margin:0 0 12px;font-size:1.05rem;display:flex;gap:8px;align-items:center}
+.item h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none}
+.add{font:inherit;font-size:1rem;font-weight:700;color:var(--ink);background:transparent;border:2px dashed var(--lime);border-radius:999px;padding:8px 18px;cursor:pointer;margin:0 0 18px}
+.add:hover{background:var(--glow)}
+.checks label,.radios label{font-weight:400;display:flex;gap:10px;align-items:flex-start;margin:0 0 8px}
+.checks input,.radios input{margin-top:6px;accent-color:var(--ok);width:18px;height:18px;flex:none}
+.radios .q{font-weight:700;font-size:1rem;display:block;margin-bottom:6px}
+.req{color:var(--bad)}
+.consent{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 26px;margin:0 0 24px}
+.consent label{font-weight:400;display:flex;gap:10px;align-items:flex-start;margin:0}
+.consent input{margin-top:6px;accent-color:var(--ok);width:18px;height:18px;flex:none}
+.btn{display:inline-block;background:var(--btn-bg);color:var(--btn-fg);font:inherit;font-weight:700;padding:12px 28px;border-radius:999px;border:2px solid var(--lime);box-shadow:0 0 0 4px var(--glow);cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--btn-hover)}
+.btn[disabled]{opacity:.6;cursor:default}
+.msg{margin:16px 0 0;font-weight:700}
+.msg.err{color:var(--bad)}
+.saved{color:var(--muted);font-size:.9rem;margin:10px 0 0}
+.done{display:none;background:var(--surface);border:2px solid var(--lime);box-shadow:0 0 0 4px var(--glow);border-radius:18px;padding:28px}
+.done h2{font-size:1.6rem;margin-bottom:10px}
+.done p{margin:0 0 8px}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 </style>
 </head>
 <body>
+<div class="band">
+  <header><div class="wrap"><a class="brand" href="https://roeigrimberg.netlify.app/">רועי גרימברג<span>ליווי טכנולוגי ועסקי לעסקים קטנים</span></a></div></header>
+  <div class="wrap hero">
+    <span class="eyebrow">שאלון היכרות</span>
+    <h1>מה הבוט צריך לדעת על העסק שלך</h1>
+    <p class="lede">מהתשובות כאן נבנה את קובץ הידע שממנו הבוט בוואטסאפ עונה ללקוחות. אחרי שתשלחו, נקבע שיחה ונעבור עליו יחד.</p>
+    <p class="note">לוקח בערך 20 עד 30 דקות. מה שכתבתם נשמר בדפדפן הזה, אז אפשר לעצור ולחזור. מה שלא ידוע לכם עכשיו, אפשר להשאיר ריק ולהשלים בשיחה.</p>
+  </div>
+</div>
 <main class="wrap">
-  <h1>שאלון היכרות: מה הבוט צריך לדעת על העסק שלך</h1>
-  <p class="lede">מהתשובות כאן נבנה את קובץ הידע שממנו הבוט בוואטסאפ עונה ללקוחות. אחרי שתשלחו, נקבע שיחה ונעבור עליו יחד.</p>
-  <p class="note">לוקח בערך 20 עד 30 דקות. מה שכתבתם נשמר בדפדפן הזה, אז אפשר לעצור ולחזור. מה שלא ידוע לכם עכשיו, אפשר להשאיר ריק ולהשלים בשיחה.</p>
-
   <form id="intake" novalidate>
-    <fieldset>
-      <legend>העסק</legend>
+    <div class="card" role="group" aria-label="העסק">
+      <h2>העסק</h2>
       <div class="row2">
         <div class="f"><label for="b_name">שם העסק <span class="req">*</span></label><input type="text" id="b_name" data-k="business.name" required></div>
         <div class="f"><label for="b_field">תחום<span class="hint">למשל: עיסוי רפואי, סטודיו ליוגה, קליניקה</span></label><input type="text" id="b_field" data-k="business.field"></div>
@@ -70,17 +101,17 @@
         <div class="f"><label for="b_email">מייל <span class="req">*</span></label><input type="email" id="b_email" data-k="business.email" autocomplete="email" required></div>
         <div class="f"><label for="b_link">אתר או אינסטגרם</label><input type="text" id="b_link" data-k="business.link"></div>
       </div>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>השירותים</legend>
+    <div class="card" role="group" aria-label="השירותים">
+      <h2>השירותים</h2>
       <p class="why">כל שירות שלקוח יכול לשאול עליו. הבוט יענה על מחיר ומשך רק ממה שכתוב כאן.</p>
       <div id="services"></div>
       <button type="button" class="add" id="addService">+ עוד שירות</button>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>מיקום, שעות ותורים</legend>
+    <div class="card" role="group" aria-label="מיקום, שעות ותורים">
+      <h2>מיקום, שעות ותורים</h2>
       <div class="f"><label for="l_address">כתובת או אזור</label><input type="text" id="l_address" data-k="logistics.address"></div>
       <div class="f"><label for="l_arrival">איך מגיעים<span class="hint">חניה, קומה, קוד לשער, תחבורה ציבורית</span></label><textarea id="l_arrival" data-k="logistics.arrival"></textarea></div>
       <div class="f"><label for="l_hours">שעות פעילות</label><textarea id="l_hours" data-k="logistics.hours"></textarea></div>
@@ -89,23 +120,23 @@
         <div class="f"><label for="l_system">מערכת לניהול תורים או לקוחות<span class="hint">אם יש. למשל Boostapp</span></label><input type="text" id="l_system" data-k="logistics.system"></div>
         <div class="f"><label for="l_payment">איך לקוחות משלמים היום?</label><input type="text" id="l_payment" data-k="logistics.payment"></div>
       </div>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>מדיניות</legend>
+    <div class="card" role="group" aria-label="מדיניות">
+      <h2>מדיניות</h2>
       <div class="f"><label for="p_cancel">ביטול, איחור והחזר כספי</label><textarea id="p_cancel" data-k="policies.cancel"></textarea></div>
       <div class="f"><label for="p_bring">מה להביא או ללבוש</label><textarea id="p_bring" data-k="policies.bring"></textarea></div>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>השאלות שלקוחות שואלים</legend>
+    <div class="card" role="group" aria-label="השאלות שלקוחות שואלים">
+      <h2>השאלות שלקוחות שואלים</h2>
       <p class="why">החלק הכי חשוב. הכי טוב להעתיק שאלות אמיתיות משיחות וואטסאפ, ולכתוב את התשובה כמו שאתם עונים בדרך כלל.</p>
       <div id="faq"></div>
       <button type="button" class="add" id="addFaq">+ עוד שאלה</button>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>מה הבוט לא עונה, ומעביר אליכם</legend>
+    <div class="card" role="group" aria-label="מה הבוט לא עונה, ומעביר אליכם">
+      <h2>מה הבוט לא עונה, ומעביר אליכם</h2>
       <p class="why">על הנושאים האלה הבוט יגיד ללקוח שתחזרו אליו, וישלח לכם התראה.</p>
       <div class="checks f" id="escItems">
         <label><input type="checkbox" value="שאלות רפואיות, הריון, פציעות ותרופות" checked> שאלות רפואיות, הריון, פציעות ותרופות</label>
@@ -116,33 +147,33 @@
       </div>
       <div class="f"><label for="e_other">עוד נושאים</label><textarea id="e_other" data-k="escalate.other"></textarea></div>
       <div class="f"><label for="e_alert">לאן לשלוח לכם התראה?<span class="hint">מספר וואטסאפ אישי, מייל, או שניהם</span></label><input type="text" id="e_alert" data-k="escalate.alert_to"></div>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>הטון</legend>
-      <div class="f radios"><span style="font-weight:600;display:block;margin-bottom:4px">איך הבוט מדבר?</span>
+    <div class="card" role="group" aria-label="הטון">
+      <h2>הטון</h2>
+      <div class="f radios"><span class="q">איך הבוט מדבר?</span>
         <label><input type="radio" name="person" value="בגוף ראשון, כאילו אני עונה"> בגוף ראשון, כאילו אני עונה</label>
         <label><input type="radio" name="person" value="בשם העסק (אנחנו)"> בשם העסק ("אנחנו")</label>
       </div>
-      <div class="f radios"><span style="font-weight:600;display:block;margin-bottom:4px">אימוג׳ים?</span>
+      <div class="f radios"><span class="q">אימוג׳ים?</span>
         <label><input type="radio" name="emoji" value="כן, במידה"> כן, במידה</label>
         <label><input type="radio" name="emoji" value="לא"> לא</label>
       </div>
       <div class="f"><label for="t_examples">שתיים-שלוש תשובות אמיתיות שכתבתם ללקוחות, ושאתם אוהבים<span class="hint">מעתיקים מוואטסאפ, בלי שם הלקוח</span></label><textarea id="t_examples" data-k="tone.examples" style="min-height:120px"></textarea></div>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>עוד משהו</legend>
+    <div class="card" role="group" aria-label="עוד משהו">
+      <h2>עוד משהו</h2>
       <div class="f"><label for="notes">מה עוד חשוב שנדע?</label><textarea id="notes" data-k="notes"></textarea></div>
-    </fieldset>
+    </div>
 
     <div class="hp" aria-hidden="true"><label for="company_site">אתר החברה</label><input type="text" id="company_site" tabindex="-1" autocomplete="off"></div>
 
     <div class="consent">
-      <label><input type="checkbox" id="consent"> <span>אני מאשר/ת לשמור את הפרטים כדי לחזור אליי ולבנות את המענה האוטומטי, לפי <a href="/privacy" target="_blank" rel="noopener">מדיניות הפרטיות</a>. <span class="req">*</span></span></label>
+      <label><input type="checkbox" id="consent"> <span>אני מאשר/ת לשמור את הפרטים כדי לחזור אליי ולבנות את המענה האוטומטי, לפי <a href="https://roeigrimberg.netlify.app/privacy" target="_blank" rel="noopener">מדיניות הפרטיות</a>. <span class="req">*</span></span></label>
     </div>
 
-    <button type="submit" class="send" id="send">לשלוח את השאלון</button>
+    <button type="submit" class="btn" id="send">לשלוח את השאלון</button>
     <p class="msg" id="msg" role="status"></p>
     <p class="saved" id="saved"></p>
   </form>
