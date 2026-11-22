@@ -45,9 +45,9 @@ main{padding-block:40px 80px}
 .card > h2 + .f, .card > h2 + .row2, .card > h2 + .checks, .card > h2 + .radios, .card > h2 + div{margin-top:16px}
 label{display:block;font-weight:700;font-size:1rem;margin:0 0 6px}
 .hint{display:block;font-weight:400;color:var(--muted);font-size:.9rem}
-input[type=text],input[type=email],input[type=tel],textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+input[type=text],input[type=email],input[type=tel],textarea,select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
 textarea{min-height:84px;resize:vertical}
-input:focus,textarea:focus{outline:none;border-color:var(--lime);box-shadow:0 0 0 4px var(--glow)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);box-shadow:0 0 0 4px var(--glow)}
 .f{margin:0 0 16px;min-width:0}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
 @media (max-width:600px){.row2{grid-template-columns:1fr}}
@@ -108,6 +108,17 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime);box-shadow:0 0 
       <p class="why">כל שירות שלקוח יכול לשאול עליו. הבוט יענה על מחיר ומשך רק ממה שכתוב כאן.</p>
       <div id="services"></div>
       <button type="button" class="add" id="addService">+ עוד שירות</button>
+    </div>
+
+    <div class="card" role="group" aria-label="הלקוחות שלכם">
+      <h2>הלקוחות שלכם</h2>
+      <p class="why">הערכה גסה מספיקה. זה עוזר לנסח את המענה ואת הפרסום כך שידברו אל האנשים הנכונים.</p>
+      <div class="row2">
+        <div class="f"><label for="c_age">טווח גילאים של לקוח טיפוסי<span class="hint">למשל: 30–45, או 45–65</span></label><input type="text" id="c_age" data-k="customers.age"></div>
+        <div class="f"><label for="c_gender">נשים, גברים או מעורב?</label><select id="c_gender" data-k="customers.gender"><option value="">בחירה</option><option value="בעיקר נשים">בעיקר נשים</option><option value="בעיקר גברים">בעיקר גברים</option><option value="מעורב">מעורב</option></select></div>
+      </div>
+      <div class="f"><label for="c_why">למה לקוחות מגיעים אליכם?<span class="hint">למשל: כאב, לחץ, המלצה של רופא, חבר הביא אותם</span></label><textarea id="c_why" data-k="customers.why"></textarea></div>
+      <div class="f"><label for="c_from">מאיפה הם מגיעים, וכמה רחוק?<span class="hint">יישובים או שכונות, וכמה זמן נסיעה בערך</span></label><input type="text" id="c_from" data-k="customers.from"></div>
     </div>
 
     <div class="card" role="group" aria-label="מיקום, שעות ותורים">
