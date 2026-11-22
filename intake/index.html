@@ -146,6 +146,20 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
       <button type="button" class="add" id="addFaq">+ עוד שאלה</button>
     </div>
 
+    <div class="card" role="group" aria-label="מה הבוט צריך להשיג">
+      <h2>מה הבוט צריך להשיג</h2>
+      <p class="why">חוץ מלענות על שאלות, לאן הבוט מוביל את השיחה. אפשר לבחור יותר מאחד.</p>
+      <div class="checks f" id="goalItems">
+        <label><input type="checkbox" value="לקבוע תור או שיעור ניסיון"> לקבוע תור או שיעור ניסיון</label>
+        <label><input type="checkbox" value="לאסוף פרטים של מתעניינים ולהעביר אליי"> לאסוף פרטים של מתעניינים ולהעביר אליי</label>
+        <label><input type="checkbox" value="לשלוח קישור לרכישה או לתשלום"> לשלוח קישור לרכישה או לתשלום</label>
+        <label><input type="checkbox" value="רק לענות על שאלות, בלי להוביל לשום פעולה"> רק לענות על שאלות, בלי להוביל לשום פעולה</label>
+      </div>
+      <div class="f"><label for="g_link">קישור לקביעת תור, להרשמה או לתשלום<span class="hint">אם יש. למשל קישור ל-Boostapp או ליומן</span></label><input type="text" id="g_link" data-k="goal.link"></div>
+      <div class="f"><label for="g_ask">מה הבוט צריך לברר מכל פונה?<span class="hint">למשל: שם, איזה שירות מעניין אותו, מתי נוח לו, האם יש פציעה</span></label><textarea id="g_ask" data-k="goal.ask"></textarea></div>
+      <div class="f"><label for="g_other">עוד משהו על המטרה של הבוט</label><textarea id="g_other" data-k="goal.other"></textarea></div>
+    </div>
+
     <div class="card" role="group" aria-label="מה הבוט לא עונה, ומעביר אליכם">
       <h2>מה הבוט לא עונה, ומעביר אליכם</h2>
       <p class="why">על הנושאים האלה הבוט יגיד ללקוח שתחזרו אליו, וישלח לכם התראה.</p>
@@ -241,6 +255,8 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
     form.querySelectorAll('[data-k]').forEach(el => setPath(data, el.dataset.k, el.value.trim()));
     data.services = [...servicesEl.querySelectorAll('.service')].map(b => { const s = {}; b.querySelectorAll('[data-s]').forEach(el => { s[el.dataset.s] = el.value.trim(); }); return s; });
     data.faq = [...faqEl.querySelectorAll('.faq')].map(b => { const f = {}; b.querySelectorAll('[data-q]').forEach(el => { f[el.dataset.q] = el.value.trim(); }); return f; });
+    data.goal = data.goal || {};
+    data.goal.items = [...document.querySelectorAll('#goalItems input:checked')].map(c => c.value);
     data.escalate = data.escalate || {};
     data.escalate.items = [...document.querySelectorAll('#escItems input:checked')].map(c => c.value);
     data.tone = data.tone || {};
@@ -261,6 +277,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
     faq.forEach(addFaq);
     if (!d) return;
     form.querySelectorAll('[data-k]').forEach(el => { const v = getPath(d, el.dataset.k); if (typeof v === 'string') el.value = v; });
+    if (d.goal && Array.isArray(d.goal.items)) document.querySelectorAll('#goalItems input').forEach(c => { c.checked = d.goal.items.includes(c.value); });
     if (d.escalate && Array.isArray(d.escalate.items)) document.querySelectorAll('#escItems input').forEach(c => { c.checked = d.escalate.items.includes(c.value); });
     if (d.tone) {
       form.querySelectorAll('input[name=person]').forEach(r => { r.checked = r.value === d.tone.person; });
