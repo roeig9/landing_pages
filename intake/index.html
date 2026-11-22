@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שאלון היכרות לעסק · רועי גרימברג</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="שאלון קצר על העסק: שירותים, מחירים, שאלות של לקוחות ומה חשוב לך. ממנו נבנה יחד את המענה האוטומטי בוואטסאפ.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSS8GSX1SJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YSS8GSX1SJ');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Secular+One&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#f2f5f3; --surface:#fff; --ink:#1c2b30; --ink-soft:#52646a; --line:#d5ddda; --good:#2f8f5b; --good-soft:#cfe8d9; --bad:#d6655a; --focus:#1f6f99; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:"Assistant",system-ui,sans-serif; font-size:16px; line-height:1.55; }
+  .wrap { max-width:760px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-family:"Secular One","Assistant",sans-serif; font-weight:400; font-size:clamp(28px,5vw,38px); line-height:1.2; margin:0 0 12px; }
+  .lede { color:var(--ink-soft); font-size:18px; margin:0 0 8px; }
+  .note { color:var(--ink-soft); font-size:15px; margin:0 0 24px; }
+  fieldset { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:20px 20px 8px; margin:0 0 18px; }
+  legend { font-family:"Secular One","Assistant",sans-serif; font-size:20px; padding:0 6px; }
+  .why { color:var(--ink-soft); font-size:14.5px; margin:-4px 0 14px; }
+  label { display:block; font-weight:600; margin:0 0 4px; }
+  .hint { display:block; font-weight:400; color:var(--ink-soft); font-size:14px; }
+  input[type=text], input[type=email], input[type=tel], textarea { width:100%; font:inherit; color:inherit; background:#fff; border:1px solid var(--line); border-radius:8px; padding:9px 11px; }
+  textarea { min-height:78px; resize:vertical; }
+  input:focus, textarea:focus { outline:2px solid var(--focus); outline-offset:1px; border-color:var(--focus); }
+  .f { margin:0 0 14px; }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:560px) { .row2 { grid-template-columns:1fr; } }
+  .item { border:1px dashed var(--line); border-radius:10px; padding:14px 14px 2px; margin:0 0 12px; }
+  .item h3 { margin:0 0 10px; font-size:16px; }
+  .add { font:inherit; font-weight:600; color:var(--focus); background:none; border:1px dashed var(--focus); border-radius:8px; padding:7px 14px; cursor:pointer; margin:0 0 14px; }
+  .checks label, .radios label { font-weight:400; display:flex; gap:8px; align-items:flex-start; margin:0 0 6px; }
+  .checks input, .radios input { margin-top:5px; }
+  .req { color:var(--bad); }
+  .consent { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin:0 0 18px; }
+  .consent label { font-weight:400; display:flex; gap:8px; align-items:flex-start; }
+  .consent input { margin-top:5px; }
+  button.send { font:inherit; font-weight:700; font-size:18px; color:#fff; background:var(--good); border:0; border-radius:999px; padding:13px 30px; cursor:pointer; }
+  button.send[disabled] { opacity:.6; cursor:default; }
+  .msg { margin:14px 0 0; font-weight:600; }
+  .msg.err { color:var(--bad); }
+  .saved { color:var(--ink-soft); font-size:14px; margin:10px 0 0; }
+  .done { display:none; background:var(--good-soft); border-radius:14px; padding:24px; }
+  .done h2 { margin:0 0 8px; font-family:"Secular One","Assistant",sans-serif; font-weight:400; }
+  .hp { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>שאלון היכרות: מה הבוט צריך לדעת על העסק שלך</h1>
+  <p class="lede">מהתשובות כאן נבנה את קובץ הידע שממנו הבוט בוואטסאפ עונה ללקוחות. אחרי שתשלחו, נקבע שיחה ונעבור עליו יחד.</p>
+  <p class="note">לוקח בערך 20 עד 30 דקות. מה שכתבתם נשמר בדפדפן הזה, אז אפשר לעצור ולחזור. מה שלא ידוע לכם עכשיו, אפשר להשאיר ריק ולהשלים בשיחה.</p>
+
+  <form id="intake" novalidate>
+    <fieldset>
+      <legend>העסק</legend>
+      <div class="row2">
+        <div class="f"><label for="b_name">שם העסק <span class="req">*</span></label><input type="text" id="b_name" data-k="business.name" required></div>
+        <div class="f"><label for="b_field">תחום<span class="hint">למשל: עיסוי רפואי, סטודיו ליוגה, קליניקה</span></label><input type="text" id="b_field" data-k="business.field"></div>
+      </div>
+      <div class="row2">
+        <div class="f"><label for="b_owner">שם מלא <span class="req">*</span></label><input type="text" id="b_owner" data-k="business.owner" autocomplete="name" required></div>
+        <div class="f"><label for="b_phone">טלפון</label><input type="tel" id="b_phone" data-k="business.phone" autocomplete="tel"></div>
+      </div>
+      <div class="row2">
+        <div class="f"><label for="b_email">מייל <span class="req">*</span></label><input type="email" id="b_email" data-k="business.email" autocomplete="email" required></div>
+        <div class="f"><label for="b_link">אתר או אינסטגרם</label><input type="text" id="b_link" data-k="business.link"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>השירותים</legend>
+      <p class="why">כל שירות שלקוח יכול לשאול עליו. הבוט יענה על מחיר ומשך רק ממה שכתוב כאן.</p>
+      <div id="services"></div>
+      <button type="button" class="add" id="addService">+ עוד שירות</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>מיקום, שעות ותורים</legend>
+      <div class="f"><label for="l_address">כתובת או אזור</label><input type="text" id="l_address" data-k="logistics.address"></div>
+      <div class="f"><label for="l_arrival">איך מגיעים<span class="hint">חניה, קומה, קוד לשער, תחבורה ציבורית</span></label><textarea id="l_arrival" data-k="logistics.arrival"></textarea></div>
+      <div class="f"><label for="l_hours">שעות פעילות</label><textarea id="l_hours" data-k="logistics.hours"></textarea></div>
+      <div class="f"><label for="l_booking">איך קובעים תור היום?<span class="hint">בוואטסאפ, בטלפון, דרך קישור, באפליקציה</span></label><textarea id="l_booking" data-k="logistics.booking_now"></textarea></div>
+      <div class="row2">
+        <div class="f"><label for="l_system">מערכת לניהול תורים או לקוחות<span class="hint">אם יש. למשל Boostapp</span></label><input type="text" id="l_system" data-k="logistics.system"></div>
+        <div class="f"><label for="l_payment">איך לקוחות משלמים היום?</label><input type="text" id="l_payment" data-k="logistics.payment"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>מדיניות</legend>
+      <div class="f"><label for="p_cancel">ביטול, איחור והחזר כספי</label><textarea id="p_cancel" data-k="policies.cancel"></textarea></div>
+      <div class="f"><label for="p_bring">מה להביא או ללבוש</label><textarea id="p_bring" data-k="policies.bring"></textarea></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>השאלות שלקוחות שואלים</legend>
+      <p class="why">החלק הכי חשוב. הכי טוב להעתיק שאלות אמיתיות משיחות וואטסאפ, ולכתוב את התשובה כמו שאתם עונים בדרך כלל.</p>
+      <div id="faq"></div>
+      <button type="button" class="add" id="addFaq">+ עוד שאלה</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>מה הבוט לא עונה, ומעביר אליכם</legend>
+      <p class="why">על הנושאים האלה הבוט יגיד ללקוח שתחזרו אליו, וישלח לכם התראה.</p>
+      <div class="checks f" id="escItems">
+        <label><input type="checkbox" value="שאלות רפואיות, הריון, פציעות ותרופות" checked> שאלות רפואיות, הריון, פציעות ותרופות</label>
+        <label><input type="checkbox" value="בקשות להנחה או למחיר מיוחד" checked> בקשות להנחה או למחיר מיוחד</label>
+        <label><input type="checkbox" value="תלונות" checked> תלונות</label>
+        <label><input type="checkbox" value="כל שאלה שהתשובה עליה לא כתובה בשאלון" checked> כל שאלה שהתשובה עליה לא כתובה בשאלון</label>
+        <label><input type="checkbox" value="מי שמבקש לדבר עם בן אדם" checked> מי שמבקש לדבר עם בן אדם</label>
+      </div>
+      <div class="f"><label for="e_other">עוד נושאים</label><textarea id="e_other" data-k="escalate.other"></textarea></div>
+      <div class="f"><label for="e_alert">לאן לשלוח לכם התראה?<span class="hint">מספר וואטסאפ אישי, מייל, או שניהם</span></label><input type="text" id="e_alert" data-k="escalate.alert_to"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>הטון</legend>
+      <div class="f radios"><span style="font-weight:600;display:block;margin-bottom:4px">איך הבוט מדבר?</span>
+        <label><input type="radio" name="person" value="בגוף ראשון, כאילו אני עונה"> בגוף ראשון, כאילו אני עונה</label>
+        <label><input type="radio" name="person" value="בשם העסק (אנחנו)"> בשם העסק ("אנחנו")</label>
+      </div>
+      <div class="f radios"><span style="font-weight:600;display:block;margin-bottom:4px">אימוג׳ים?</span>
+        <label><input type="radio" name="emoji" value="כן, במידה"> כן, במידה</label>
+        <label><input type="radio" name="emoji" value="לא"> לא</label>
+      </div>
+      <div class="f"><label for="t_examples">שתיים-שלוש תשובות אמיתיות שכתבתם ללקוחות, ושאתם אוהבים<span class="hint">מעתיקים מוואטסאפ, בלי שם הלקוח</span></label><textarea id="t_examples" data-k="tone.examples" style="min-height:120px"></textarea></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>עוד משהו</legend>
+      <div class="f"><label for="notes">מה עוד חשוב שנדע?</label><textarea id="notes" data-k="notes"></textarea></div>
+    </fieldset>
+
+    <div class="hp" aria-hidden="true"><label for="company_site">אתר החברה</label><input type="text" id="company_site" tabindex="-1" autocomplete="off"></div>
+
+    <div class="consent">
+      <label><input type="checkbox" id="consent"> <span>אני מאשר/ת לשמור את הפרטים כדי לחזור אליי ולבנות את המענה האוטומטי, לפי <a href="/privacy" target="_blank" rel="noopener">מדיניות הפרטיות</a>. <span class="req">*</span></span></label>
+    </div>
+
+    <button type="submit" class="send" id="send">לשלוח את השאלון</button>
+    <p class="msg" id="msg" role="status"></p>
+    <p class="saved" id="saved"></p>
+  </form>
+
+  <div class="done" id="done" role="status">
+    <h2>קיבלתי, תודה!</h2>
+    <p>אעבור על השאלון ואחזור אליך לתאם שיחה. בשיחה נעבור עליו יחד, נשלים את מה שחסר, ונחליט מה הבוט עונה ומה הוא מעביר אליך.</p>
+    <p>רועי גרימברג</p>
+  </div>
+</main>
+
+<script>
+(function () {
+  const WEBHOOK_URL = 'https://rgconsultant.app.n8n.cloud/webhook/business-intake';
+  const KEY = 'intake-draft-v1';
+  const form = document.getElementById('intake');
+  const servicesEl = document.getElementById('services');
+  const faqEl = document.getElementById('faq');
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  function serviceBlock(i, s) {
+    s = s || {};
+    const d = document.createElement('div');
+    d.className = 'item service';
+    d.innerHTML =
+      '<h3>שירות ' + (i + 1) + '</h3>' +
+      '<div class="f"><label>שם השירות</label><input type="text" data-s="name" value="' + esc(s.name) + '"></div>' +
+      '<div class="f"><label>תיאור קצר<span class="hint">מה זה, למי זה מתאים</span></label><textarea data-s="desc">' + esc(s.desc) + '</textarea></div>' +
+      '<div class="row2"><div class="f"><label>משך</label><input type="text" data-s="duration" value="' + esc(s.duration) + '"></div>' +
+      '<div class="f"><label>מחיר</label><input type="text" data-s="price" value="' + esc(s.price) + '"></div></div>' +
+      '<div class="f"><label>מה כלול במחיר</label><input type="text" data-s="included" value="' + esc(s.included) + '"></div>';
+    return d;
+  }
+  function faqBlock(i, f) {
+    f = f || {};
+    const d = document.createElement('div');
+    d.className = 'item faq';
+    d.innerHTML =
+      '<h3>שאלה ' + (i + 1) + '</h3>' +
+      '<div class="f"><label>השאלה</label><input type="text" data-q="q" value="' + esc(f.q) + '"></div>' +
+      '<div class="f"><label>התשובה שלכם</label><textarea data-q="a">' + esc(f.a) + '</textarea></div>';
+    return d;
+  }
+  function addService(s) { servicesEl.appendChild(serviceBlock(servicesEl.children.length, s)); }
+  function addFaq(f) { faqEl.appendChild(faqBlock(faqEl.children.length, f)); }
+
+  function setPath(o, path, v) { const ks = path.split('.'); let x = o; ks.slice(0, -1).forEach(k => { x[k] = x[k] || {}; x = x[k]; }); x[ks.at(-1)] = v; }
+  function getPath(o, path) { return path.split('.').reduce((x, k) => (x == null ? undefined : x[k]), o); }
+
+  function collect() {
+    const data = {};
+    form.querySelectorAll('[data-k]').forEach(el => setPath(data, el.dataset.k, el.value.trim()));
+    data.services = [...servicesEl.querySelectorAll('.service')].map(b => { const s = {}; b.querySelectorAll('[data-s]').forEach(el => { s[el.dataset.s] = el.value.trim(); }); return s; });
+    data.faq = [...faqEl.querySelectorAll('.faq')].map(b => { const f = {}; b.querySelectorAll('[data-q]').forEach(el => { f[el.dataset.q] = el.value.trim(); }); return f; });
+    data.escalate = data.escalate || {};
+    data.escalate.items = [...document.querySelectorAll('#escItems input:checked')].map(c => c.value);
+    data.tone = data.tone || {};
+    data.tone.person = (form.querySelector('input[name=person]:checked') || {}).value || '';
+    data.tone.emoji = (form.querySelector('input[name=emoji]:checked') || {}).value || '';
+    data.consent = document.getElementById('consent').checked;
+    data.company_site = document.getElementById('company_site').value;
+    try { data.source = new URLSearchParams(location.search).get('utm_source') || new URLSearchParams(location.search).get('c') || ''; } catch (e) { data.source = ''; }
+    return data;
+  }
+
+  function restore() {
+    let d = null;
+    try { d = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    const services = d && Array.isArray(d.services) && d.services.length ? d.services : [{}, {}];
+    const faq = d && Array.isArray(d.faq) && d.faq.length ? d.faq : [{}, {}, {}, {}, {}];
+    services.forEach(addService);
+    faq.forEach(addFaq);
+    if (!d) return;
+    form.querySelectorAll('[data-k]').forEach(el => { const v = getPath(d, el.dataset.k); if (typeof v === 'string') el.value = v; });
+    if (d.escalate && Array.isArray(d.escalate.items)) document.querySelectorAll('#escItems input').forEach(c => { c.checked = d.escalate.items.includes(c.value); });
+    if (d.tone) {
+      form.querySelectorAll('input[name=person]').forEach(r => { r.checked = r.value === d.tone.person; });
+      form.querySelectorAll('input[name=emoji]').forEach(r => { r.checked = r.value === d.tone.emoji; });
+    }
+    document.getElementById('saved').textContent = 'שחזרנו את מה שכתבתם בפעם הקודמת.';
+  }
+
+  let timer;
+  function save() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      try {
+        const d = collect(); delete d.consent; delete d.company_site;
+        localStorage.setItem(KEY, JSON.stringify(d));
+        document.getElementById('saved').textContent = 'נשמר בדפדפן הזה.';
+      } catch (e) {}
+    }, 600);
+  }
+
+  restore();
+  form.addEventListener('input', save);
+  form.addEventListener('change', save);
+  document.getElementById('addService').addEventListener('click', () => { addService(); save(); });
+  document.getElementById('addFaq').addEventListener('click', () => { addFaq(); save(); });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const msg = document.getElementById('msg');
+    msg.className = 'msg err';
+    const d = collect();
+    if (d.company_site) return;
+    const missing = [];
+    if (!d.business.name) missing.push('שם העסק');
+    if (!d.business.owner) missing.push('שם מלא');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.business.email)) missing.push('מייל תקין');
+    if (!d.consent) missing.push('אישור מדיניות הפרטיות');
+    if (missing.length) { msg.textContent = 'חסר: ' + missing.join(', '); return; }
+    const btn = document.getElementById('send');
+    btn.disabled = true; msg.className = 'msg'; msg.textContent = 'שולח...';
+    try {
+      const res = await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+      if (!res.ok) throw new Error(res.status);
+      try { localStorage.removeItem(KEY); } catch (e2) {}
+      if (typeof gtag === 'function') gtag('event', 'intake_submit', { source: d.source || 'direct' });
+      form.style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      btn.disabled = false;
+      msg.className = 'msg err';
+      msg.textContent = 'השליחה לא הצליחה. מה שכתבתם שמור. אפשר לנסות שוב, או לשלוח לי הודעה בוואטסאפ: 054-6240255';
+    }
+  });
+})();
+</script>
+</body>
+</html>
