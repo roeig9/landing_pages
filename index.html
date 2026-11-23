@@ -22,7 +22,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YSS8GSX1SJ');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@500;700&family=Assistant:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 /* Olive Flow: dark "Night Olive" theme. One continuous olive thread runs down the page through a node beside every section heading. */
 :root{
@@ -30,8 +30,8 @@
   --ink:#F2F1EA; --muted:#A9B2A6; --olive:#9CAF6E; --olive-deep:#4E5A2C;
   --cta:#C5D88A; --on-cta:#0F1411; --cta-hover:#D3E3A0; --sand:#D9B98C;
   --display:"Frank Ruhl Libre","David Libre",serif;
-  --ui:"Heebo",system-ui,sans-serif;
-  --body:"Assistant",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --ui:var(--display);
+  --body:var(--display);
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --ease:cubic-bezier(.22,1,.36,1); --r-card:20px; --r-pill:999px;
   --gutter:76px; --node-x:26px;
@@ -364,18 +364,18 @@ footer a:hover{color:var(--ink)}
       <li class="svc rv" style="--d:60ms">
         <div class="svc-head">
           <span class="num">02</span>
-          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7.5V18l-4 1.5v-7L4 5z"/></svg></span>
-          <h3 id="svc02-t"><bdi>CRM</bdi> ומעקב לידים</h3>
+          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><path d="M9.5 13.5v.01M14.5 13.5v.01"/><path d="M9.5 16.5h5"/><path d="M3 12.5v3M21 12.5v3"/></svg></span>
+          <h3 id="svc02-t">אוטומציות ו-<bdi>AI</bdi></h3>
           <button type="button" class="more" aria-expanded="false" aria-controls="svc02"><span class="lbl">מידע נוסף</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
         </div>
         <div class="svc-body" id="svc02" role="region" aria-labelledby="svc02-t">
           <div class="svc-inner">
             <div>
-              <h4>כל ליד נרשם, אף לקוח לא נשכח</h4>
-              <p>לידים מהאתר, מהטפסים ומהרשתות נכנסים ישר ל-<bdi>CRM</bdi>, ותזכורות על הצעות מחיר, חידושים וגבייה נקבעות לבד.</p>
+              <h4>המערכות שלכם עובדות יחד, וה-<bdi>AI</bdi> עושה את העבודה השחורה</h4>
+              <p>מעקב לידים ב-<bdi>CRM</bdi>, חיבור בין מערכות, טפסים ייעודיים ודשבורד ניהולי. כלי <bdi>AI</bdi> מסכמים פניות, ממיינים לידים ומנסחים טיוטות לתשובה. וכשהכלים הקיימים לא עונים על הצורך עד הסוף, מפתחים את מה שחסר.</p>
             </div>
             <div class="side">
-          <div class="gets"><b>מתאים כש…</b>פונים מתעניינים אבל לא הופכים ללקוחות, ורוצים לגדול בלי לרדוף אחרי כל ליד בעצמכם.</div>
+          <div class="gets"><b>מתאים כש…</b>לידים נופלים בין הכיסאות, נתונים עוברים ידנית ממערכת למערכת, ומצב העסק מתברר רק בסוף החודש.</div>
         </div>
           </div>
         </div>
@@ -383,30 +383,11 @@ footer a:hover{color:var(--ink)}
       <li class="svc rv" style="--d:120ms">
         <div class="svc-head">
           <span class="num">03</span>
-          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 6h7M18 8.5v7M7.8 7.8l8.4 8.4"/></svg></span>
-          <h3 id="svc03-t">אוטומציות ופיתוח</h3>
+          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 15l4-4 3 3 5-6"/><path d="M15 8h3v3"/></svg></span>
+          <h3 id="svc03-t">ליווי עסקי</h3>
           <button type="button" class="more" aria-expanded="false" aria-controls="svc03"><span class="lbl">מידע נוסף</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
         </div>
         <div class="svc-body" id="svc03" role="region" aria-labelledby="svc03-t">
-          <div class="svc-inner">
-            <div>
-              <h4>המערכות שכבר יש לכם, עובדות יחד</h4>
-              <p>חיבור בין מערכות, טפסים ייעודיים ודשבורד ניהולי. וכשהכלים הקיימים לא עונים על הצורך עד הסוף, מפתחים את מה שחסר.</p>
-            </div>
-            <div class="side">
-          <div class="gets"><b>מתאים כש…</b>מעבירים נתונים ממערכת למערכת, ובכל העתקה מחכה טעות. או שמצב העסק מתברר רק בסוף החודש.</div>
-        </div>
-          </div>
-        </div>
-      </li>
-      <li class="svc rv" style="--d:180ms">
-        <div class="svc-head">
-          <span class="num">04</span>
-          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 15l4-4 3 3 5-6"/><path d="M15 8h3v3"/></svg></span>
-          <h3 id="svc04-t">ליווי עסקי</h3>
-          <button type="button" class="more" aria-expanded="false" aria-controls="svc04"><span class="lbl">מידע נוסף</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-        </div>
-        <div class="svc-body" id="svc04" role="region" aria-labelledby="svc04-t">
           <div class="svc-inner">
             <div>
               <h4>ממשיכים יחד אחרי ההטמעה</h4>
@@ -649,7 +630,7 @@ footer a:hover{color:var(--ink)}
  "name": "רועי גרימברג",
  "alternateName": "Roei Grimberg",
  "url": "https://roeigrimberg.com/",
- "description": "ליווי טכנולוגי ועסקי לעסקים קטנים: בוט בוואטסאפ, CRM ומעקב לידים, אוטומציות וליווי עסקי.",
+ "description": "ליווי טכנולוגי ועסקי לעסקים קטנים: בוט בוואטסאפ, אוטומציות ו-AI (כולל CRM ומעקב לידים) וליווי עסקי.",
  "telephone": "+972546240255",
  "inLanguage": "he",
  "hasMap": "https://maps.google.com/?cid=18426570419320725720",
@@ -710,14 +691,7 @@ footer a:hover{color:var(--ink)}
    "@type": "Offer",
    "itemOffered": {
     "@type": "Service",
-    "name": "הטמעת CRM ומעקב לידים"
-   }
-  },
-  {
-   "@type": "Offer",
-   "itemOffered": {
-    "@type": "Service",
-    "name": "אוטומציות ופיתוח בהתאמה אישית"
+    "name": "אוטומציות ו-AI, כולל CRM ומעקב לידים"
    }
   },
   {
