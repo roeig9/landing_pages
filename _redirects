@@ -1,2 +1,4 @@
+# Netlify only (GitHub Pages ignores this file): send the old address to the new domain.
+https://roeigrimberg.netlify.app/*  https://roeigrimberg.com/:splat  301!
 /boostapp   /?utm_source=boostapp   301
 /boostapp/  /?utm_source=boostapp   301
