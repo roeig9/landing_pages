@@ -132,6 +132,16 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;line-height:1.15;letter-
 .pains h3{font-family:var(--display);font-weight:700;font-size:1.5rem}
 .pains p{color:var(--muted)}
 
+.vat{margin-top:18px;color:var(--muted);font-size:.92rem}
+.path .note{font-size:.92rem;margin-top:4px}
+.path li{display:flex;flex-direction:column;align-items:flex-start}
+.path li>.btn{margin-top:auto}
+.path li>p{margin-bottom:18px}
+.station .btn{margin-top:16px}
+.scan-card{margin-top:40px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:center;background:var(--surface);border:1px solid color-mix(in srgb,var(--olive) 40%,transparent);border-radius:var(--r-card);padding:clamp(26px,4vw,40px)}
+.scan-card .lede{margin:0}
+.scan-card .btn{margin-top:22px}
+@media (max-width:900px){.scan-card{grid-template-columns:1fr;gap:24px}}
 /* start path */
 .path{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .path li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:26px}
@@ -271,6 +281,7 @@ footer a:hover{color:var(--ink)}
     <a class="brand" href="/">רועי גרימברג<small>ליווי טכנולוגי ועסקי לעסקים קטנים</small></a>
     <nav aria-label="ניווט ראשי">
       <a href="#layers">שירותים</a>
+      <a href="#scan">בדיקה חינמית</a>
       <a href="#start">איך מתחילים</a>
       <a href="#about">מי אני</a>
       <a href="#faq">שאלות</a>
@@ -286,9 +297,9 @@ footer a:hover{color:var(--ink)}
   <div class="wrap t hero-grid">
     <div class="head">
       <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">אוטומציות, <bdi>CRM</bdi> ו-<bdi>AI</bdi> לעסקים קטנים</span>
+      <span class="eyebrow">אפיון תהליכים, אוטומציה ו-<bdi>AI</bdi> לעסקים קטנים</span>
       <h1>אתם במקצוע שלכם.<em>המערכת עושה את השאר.</em></h1>
-      <p class="lede">מענה ללידים, תזכורות ומעקבים שרצים לבד, כדי שתתפנו למה שאתם עושים הכי טוב.</p>
+      <p class="lede">אני מאפיין איך העסק שלכם עובד, ובונה את המערכות שמריצות אותו: מענה ללידים, מעקב ותזכורות שקורים לבד.</p>
       <div class="cta-row">
         <a class="btn" href="/book?from=home-hero">לתיאום שיחת היכרות<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         <a class="btn ghost" href="#layers">מה אני בונה</a>
@@ -309,28 +320,13 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
-<section>
-  <div class="wrap t">
-    <div class="head rv">
-      <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">מכירים את זה?</span>
-      <h2>הזמן הולך על ניהול, במקום על המקצוע</h2>
-    </div>
-    <ul class="pains">
-      <li class="rv"><h3>לידים מחכים לתשובה</h3><p>פנייה נכנסת באמצע פגישה ומקבלת מענה רק בערב. בינתיים יחס ההמרה יורד.</p></li>
-      <li class="rv" style="--d:60ms"><h3>לקוחות נעלמים בשקט</h3><p>לקוח לא חוזר, הצעת מחיר נשארת פתוחה, ואין מנגנון שמתריע על כך בזמן.</p></li>
-      <li class="rv" style="--d:120ms"><h3>אין תמונת מצב</h3><p>אין מעקב נוח אחרי תשלומים, ומצב העסק מתברר רק בסוף החודש.</p></li>
-    </ul>
-  </div>
-</section>
-
 <section id="layers" class="alt">
   <div class="wrap t">
     <div class="head rv">
       <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">מה אני בונה</span>
-      <h2>בונים לפי מה שהעסק שלכם צריך</h2>
-      <p class="lede">כל עסק מתחיל מנקודה אחרת. אפשר לבחור דבר אחד, ולהוסיף בהמשך.</p>
+      <span class="eyebrow">שירותים</span>
+      <h2>מה אני בונה</h2>
+      <p class="lede">כל עבודה מתחילה באפיון של התהליך, ורק אחר כך בבנייה.</p>
     </div>
 
     <ol class="stations">
@@ -344,6 +340,7 @@ footer a:hover{color:var(--ink)}
         <div class="side">
           <div class="gets"><b>מתאים כש…</b>הוואטסאפ מלא באותן שאלות על מחירים, שעות וזמינות.</div>
           <p class="price">1,000&nbsp;₪ הקמה, ועוד 250&nbsp;₪ לחודש לתחזוקה ועדכונים</p>
+          <a class="btn sm" href="/intake/?from=home-bot">לשאלון לבניית הבוט<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </li>
       <li class="station rv">
@@ -376,17 +373,32 @@ footer a:hover{color:var(--ink)}
           <p>ניתוח לידים, מחירון ומבצעים, ותחזוקה של המערכות, בקצב שמתאים לעסק.</p>
         </div>
         <div class="plans side">
-          <div class="plan"><h4>ליווי חודשי</h4><p>פגישת נתונים חודשית ומענה בוואטסאפ.</p><small>500&nbsp;₪ לחודש</small></div>
+          <div class="plan"><h4>ליווי חודשי</h4><p>פגישת נתונים חודשית ותחזוקה של המערכות.</p><small>500&nbsp;₪ לחודש</small></div>
           <div class="plan"><h4>ליווי שבועי</h4><p>פגישה שבועית וליווי צמוד, לרוב ל-3 חודשים.</p><small>1,400&nbsp;₪ לחודש</small></div>
         </div>
       </li>
     </ol>
-    <!-- TODO רועי: המחירים כוללים מע״מ או לפני מע״מ? -->
-    <p class="todo">[להשלים: המחירים כוללים מע״מ, או לפני מע״מ]</p>
+    <p class="vat rv">כל המחירים לפני מע״מ.</p>
+  </div>
+</section>
 
-    <div class="tools rv" aria-label="כלים שאני עובד איתם">
-      <span class="lbl">כלים שאני עובד איתם</span>
-      <span class="pill">n8n</span><span class="pill">Boostapp</span><span class="pill">Make</span><span class="pill">Softr</span><span class="pill">ClickUp</span><span class="pill">WhatsApp Business</span><span class="pill">Gmail</span><span class="pill">Google Sheets</span><span class="pill">Facebook</span><span class="pill">Instagram</span><span class="pill">Claude</span>
+<section id="scan" class="alt">
+  <div class="wrap t">
+    <div class="head rv">
+      <span class="node" aria-hidden="true"></span>
+      <span class="eyebrow">בדיקה חינמית</span>
+      <h2>איך העסק שלכם מופיע בגוגל מפות?</h2>
+    </div>
+    <div class="scan-card rv">
+      <div>
+        <p class="lede">משאירים את שם העסק והתחום, ומקבלים במייל דוח: באילו אזורים אתם מופיעים בתוצאות הראשונות, מי מופיע לפניכם, ומה כדאי לשפר.</p>
+        <a class="btn" href="/scan/?from=home">לבדיקה החינמית<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+      <ul class="ticks">
+        <li>מפת דירוג לפי שכונות סביב העסק</li>
+        <li>המתחרים שמופיעים לפניכם</li>
+        <li>צעדים לשיפור הפרופיל העסקי שלכם</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -399,40 +411,10 @@ footer a:hover{color:var(--ink)}
       <h2>משיחה קצרה לתוכנית עבודה</h2>
     </div>
     <ol class="path">
-      <li class="rv"><span class="num">01</span><h3>שיחת היכרות</h3><p>חצי שעה, ללא תשלום. מספרים לי על העסק, ואני מסביר מה אני עושה ואיך זה יכול להיראות אצלכם.</p></li>
-      <li class="rv" style="--d:60ms"><span class="num">02</span><h3>פגישת אבחון</h3><p>אני מגיע מוכן: לפני הפגישה אתם משתפים נתונים, ואני לומד אותם. בפגישה מתעמקים בלידים, באוטומציות ובמחירון.</p><p class="price">500&nbsp;₪</p></li>
+      <li class="rv"><span class="num">01</span><h3>שיחת היכרות</h3><p>חצי שעה, ללא תשלום. מספרים לי על העסק, ואני מסביר מה אני עושה ואיך זה יכול להיראות אצלכם.</p><a class="btn sm" href="/book?from=home-path">לתיאום שיחת היכרות<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a></li>
+      <li class="rv" style="--d:60ms"><span class="num">02</span><h3>פגישת אבחון</h3><p>אני מגיע מוכן: לפני הפגישה אתם משתפים נתונים, ואני לומד אותם. בפגישה מתעמקים בלידים, באוטומציות ובמחירון.</p><p class="price">500&nbsp;₪ · שעה וחצי</p><p class="note">אם ממשיכים לבנייה, הסכום מקוזז מהמחיר.</p></li>
       <li class="rv" style="--d:120ms"><span class="num">03</span><h3>תוכנית עבודה</h3><p>יוצאים עם תוכנית: מה אתם עושים בעצמכם, ומה אני בונה בשבילכם, כמו דף נחיתה, חיבור <bdi>CRM</bdi>, אוטומציות או בדיקת נוכחות בגוגל.</p></li>
     </ol>
-  </div>
-</section>
-
-<section>
-  <div class="wrap t">
-    <div class="head rv">
-      <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">לפני ואחרי</span>
-      <h2>מה קורה לליד אחד שנכנס באמצע היום</h2>
-    </div>
-    <div class="ba rv">
-      <div class="toggle" role="group" aria-label="השוואה">
-        <button type="button" aria-pressed="true" data-show="before">לפני</button>
-        <button type="button" aria-pressed="false" data-show="after">אחרי</button>
-      </div>
-      <p class="ba-cap" id="ba-cap" aria-live="polite">שישה צעדים ידניים, וכל אחד מהם יכול ליפול בין הכיסאות.</p>
-      <ol class="steps before" id="ba-before">
-        <li style="--i:0"><span class="box">ליד שולח הודעה בוואטסאפ באמצע פגישה</span></li>
-        <li style="--i:1"><span class="box">רואים את ההודעה רק בערב</span></li>
-        <li style="--i:2"><span class="box">עונים למחרת, כשהוא כבר בירר במקום אחר</span></li>
-        <li style="--i:3"><span class="box">הפרטים נשארים בצ׳אט ולא נרשמים בשום מקום</span></li>
-        <li style="--i:4"><span class="box">הצעת מחיר נשלחת, ואף אחד לא זוכר לבדוק אותה</span></li>
-        <li style="--i:5"><span class="box">הלקוח נעלם בשקט</span></li>
-      </ol>
-      <ol class="steps after" id="ba-after" hidden>
-        <li style="--i:0"><span class="box">הליד נקלט ב-<bdi>CRM</bdi> ומקבל תשובה מיד, גם באמצע פגישה</span></li>
-        <li style="--i:1"><span class="box">תזכורת מעקב על הצעת המחיר נקבעת לבד</span></li>
-        <li style="--i:2"><span class="box">אתם רואים את כל התמונה בבוקר, ומחליטים</span></li>
-      </ol>
-    </div>
   </div>
 </section>
 
@@ -448,7 +430,7 @@ footer a:hover{color:var(--ink)}
         <blockquote>היום כל אחד יכול להרים מערכת בכמה שעות. החלק הקשה הוא להחליט מה המערכת צריכה לעשות.</blockquote>
         <p class="body">שם נמצא הניסיון שלי: לאפיין איך ליד הופך ללקוח בעסק שלכם ואיפה הוא נתקע, עוד לפני שבונים משהו.</p>
         <ul class="creds">
-          <li><b><bdi>CRM</bdi> ואוטומציה</b><span>פרילנסר בתחום ה-<bdi>CRM</bdi>: פיתוח וחיבור מערכות בהתאמה לצרכי הלקוח</span></li>
+          <li><b><bdi>CRM</bdi> ואוטומציה</b><span>פיתוח וחיבור מערכות לסוכנויות ולעסקים, בהתאמה לתהליכים שלהם</span></li>
           <li><b>עולם הכושר</b><span>כלים לניתוח תוכניות אימון, וליווי טכנולוגי ועסקי של סטודיו ומאמנים</span></li>
           <li><b><bdi>AI</bdi> בשירות לקוחות</b><span>הטמעה ופיילוט של סוכן <bdi>AI</bdi> במוקד תמיכה טכנית</span></li>
           <li><b>רקע הנדסי</b><span>מערכות <bdi>IoT</bdi> ופיתוח אפליקציות לתהליכים תפעוליים בתעשייה</span></li>
@@ -505,14 +487,14 @@ footer a:hover{color:var(--ink)}
       <h2>מה שבעלי עסקים שואלים לפני שמתחילים</h2>
     </div>
     <div class="faq-list">
-      <details><summary><span>מה ההבדל בין שיחת היכרות לפגישת אבחון?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. לפגישת האבחון אני מגיע מוכן, אחרי שעברתי על נתונים ששיתפתם, ובה מתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה.</p></details>
+      <details><summary><span>מה ההבדל בין שיחת היכרות לפגישת אבחון?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. פגישת האבחון נמשכת שעה וחצי, ואני מגיע אליה מוכן, אחרי שעברתי על נתונים ששיתפתם, ובה מתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה.</p></details>
       <details><summary><span>מה זה אוטומציות, והאם העסק שלי צריך אותן?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אוטומציה היא פעולה שקורית לבד, בלי שמישהו צריך לזכור לעשות אותה. למשל: ליד חדש מהאתר נכנס ל-<bdi>CRM</bdi> ומקבל הודעה בוואטסאפ, והצעת מחיר שלא נחתמה מקבלת תזכורת. אם משהו נופל בין הכיסאות כשאתם עסוקים, כנראה שאוטומציה תחסוך לכם זמן ולקוחות.</p></details>
-      <details><summary><span>אפשר לבנות את זה לבד עם <bdi>AI</bdi>. למה צריך אותך?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אפשר, ולפעמים זה גם יעבוד. אבל מערכת שנבנית על תהליך לא נכון רק מאיצה את הטעות. רוב העבודה היא להבין איך העסק עובד ולאפיין את התהליך, והבנייה מגיעה אחרי זה. מי שרוצה לבנות לבד יכול להסתפק בפגישת האבחון ובתוכנית.</p></details>
+      <details><summary><span>למה לא לבנות את זה לבד עם <bdi>AI</bdi>?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אפשר, ולפעמים זה גם יעבוד. אבל מערכת שנבנית על תהליך לא נכון רק מאיצה את הטעות. רוב העבודה היא להבין איך העסק עובד ולאפיין את התהליך, והבנייה מגיעה אחרי זה. מי שרוצה לבנות לבד יכול להסתפק בפגישת האבחון ובתוכנית.</p></details>
       <details><summary><span>יש לי כבר מערכת. צריך להחליף אותה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>ברוב המקרים לא. אני מתחיל מהכלים שכבר יש לכם, כמו <bdi>Boostapp</bdi>, <bdi>ClickUp</bdi>, <bdi>Google Sheets</bdi> או וואטסאפ עסקי, ומוציא מהם את המקסימום.</p></details>
       <details><summary><span>איך נבנה הבוט בוואטסאפ?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>ממלאים שאלון קצר על העסק: שירותים, מחירים, שעות, ומה הבוט לא עונה. מהתשובות אני בונה את הבוט, אתם בודקים ומאשרים את התשובות שלו, ורק אז מחברים אותו לוואטסאפ של העסק.</p></details>
       <details><summary><span>מה קורה כשהבוט לא יודע לענות?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>הוא לא ממציא. הוא אומר לפונה שתחזרו אליו, ושולח לכם התראה עם הפרטים ומה נשאל. גם נושאים שבחרתם מראש, כמו בקשות להנחה או תלונות, עוברים ישר אליכם.</p></details>
       <details><summary><span>אפשר להתחיל רק מאבחון, בלי להתחייב להמשך?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>כן. התוכנית שיוצאת מהאבחון שלכם, ואפשר ליישם אותה לבד.</p></details>
-      <details><summary><span>כמה זה עולה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות ללא תשלום. פגישת אבחון: 500&nbsp;₪. בוט בוואטסאפ: 1,000&nbsp;₪ הקמה ועוד 250&nbsp;₪ לחודש. ליווי חודשי: 500&nbsp;₪ לחודש, וליווי שבועי: 1,400&nbsp;₪ לחודש. בניית מערכות ואוטומציות מתומחרת לפי היקף, אחרי פגישת האבחון.</p></details>
+      <details><summary><span>כמה זה עולה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות ללא תשלום. פגישת אבחון: 500&nbsp;₪, ומקוזזת אם ממשיכים לבנייה. בוט בוואטסאפ: 1,000&nbsp;₪ הקמה ועוד 250&nbsp;₪ לחודש. ליווי חודשי: 500&nbsp;₪ לחודש, וליווי שבועי: 1,400&nbsp;₪ לחודש. בניית מערכות ואוטומציות מתומחרת לפי היקף, אחרי פגישת האבחון. כל המחירים לפני מע״מ.</p></details>
     </div>
   </div>
 </section>
@@ -555,7 +537,7 @@ footer a:hover{color:var(--ink)}
    "name": "מה ההבדל בין שיחת היכרות לפגישת אבחון?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. לפגישת האבחון אני מגיע מוכן, אחרי שעברתי על נתונים ששיתפתם, ובה מתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה."
+    "text": "שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. פגישת האבחון נמשכת שעה וחצי, ואני מגיע אליה מוכן, אחרי שעברתי על נתונים ששיתפתם, ובה מתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה."
    }
   },
   {
@@ -568,7 +550,7 @@ footer a:hover{color:var(--ink)}
   },
   {
    "@type": "Question",
-   "name": "אפשר לבנות את זה לבד עם AI. למה צריך אותך?",
+   "name": "למה לא לבנות את זה לבד עם AI?",
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "אפשר, ולפעמים זה גם יעבוד. אבל מערכת שנבנית על תהליך לא נכון רק מאיצה את הטעות. רוב העבודה היא להבין איך העסק עובד ולאפיין את התהליך, והבנייה מגיעה אחרי זה. מי שרוצה לבנות לבד יכול להסתפק בפגישת האבחון ובתוכנית."
@@ -611,7 +593,7 @@ footer a:hover{color:var(--ink)}
    "name": "כמה זה עולה?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "שיחת ההיכרות ללא תשלום. פגישת אבחון: 500 ₪. בוט בוואטסאפ: 1,000 ₪ הקמה ועוד 250 ₪ לחודש. ליווי חודשי: 500 ₪ לחודש, וליווי שבועי: 1,400 ₪ לחודש. בניית מערכות ואוטומציות מתומחרת לפי היקף, אחרי פגישת האבחון."
+    "text": "שיחת ההיכרות ללא תשלום. פגישת אבחון: 500 ₪, ומקוזזת אם ממשיכים לבנייה. בוט בוואטסאפ: 1,000 ₪ הקמה ועוד 250 ₪ לחודש. ליווי חודשי: 500 ₪ לחודש, וליווי שבועי: 1,400 ₪ לחודש. בניית מערכות ואוטומציות מתומחרת לפי היקף, אחרי פגישת האבחון. כל המחירים לפני מע״מ."
    }
   }
  ]
