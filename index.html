@@ -162,7 +162,19 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;line-height:1.15;letter-
 .svc-inner .gets{margin-top:0}
 .svc-inner .btn{margin-top:16px}
 .svc-inner .price{margin:14px 0 0;font-family:var(--ui);font-weight:700;color:var(--ink)}
-@media (max-width:760px){ .svc-head{padding:16px 18px;gap:14px}.svc-head .num{display:none}.svc-inner{grid-template-columns:1fr;gap:16px;padding:0 18px}.svc.open .svc-inner{padding-bottom:20px}.svc h3{font-size:1.2rem}.more{padding:10px}.more .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
+@media (max-width:760px){ .svc-head{padding:16px 18px;gap:14px}.svc-inner{grid-template-columns:1fr;gap:16px;padding:0 18px}.svc.open .svc-inner{padding-bottom:20px}.svc h3{font-size:1.2rem}.more{padding:10px}.more .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
+/* path flow: 01 -> 02 -> 03 lights up in order, joined by a drawn line */
+.path li{position:relative}
+.path .num{position:relative;z-index:3;transition:background-color .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease)}
+.path li:not(:last-child)::after{content:"";position:absolute;z-index:2;top:41px;height:2px;inset-inline-start:76px;inset-inline-end:-40px;background:var(--olive);border-radius:2px;transform-origin:100% 50%;transition:transform .6s var(--ease)}
+.path li:nth-child(1) .num{transition-delay:.15s}
+.path li:nth-child(1)::after{transition-delay:.45s}
+.path li:nth-child(2) .num{transition-delay:1.05s}
+.path li:nth-child(2)::after{transition-delay:1.35s}
+.path li:nth-child(3) .num{transition-delay:1.95s}
+.path.play .num,html:not(.js) .path .num{background:var(--olive);color:var(--on-cta);border-color:var(--olive)}
+.js .path:not(.play) li::after{transform:scaleX(0)}
+@media (max-width:900px){.path li:not(:last-child)::after{top:calc(100% - 14px);bottom:auto;height:58px;width:2px;inset-inline-start:45px;inset-inline-end:auto;transform-origin:50% 0}.js .path:not(.play) li::after{transform:scaleY(0)}}
 /* start path */
 .path{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .path li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:26px}
@@ -209,7 +221,6 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;line-height:1.15;letter-
 .portrait-wrap{position:relative;max-width:400px;justify-self:center}
 .portrait-wrap::after{content:"";position:absolute;inset:-12px;border:1.5px solid var(--olive);border-radius:58% 42% 47% 53% / 46% 55% 45% 54%;opacity:.7}
 .portrait{border-radius:55% 45% 50% 50% / 48% 52% 48% 52%;aspect-ratio:4/5;object-fit:cover;width:100%;filter:saturate(.92)}
-.about .eyebrow{color:var(--sand)}
 .about .body{color:var(--muted);margin-top:18px;max-width:58ch}
 .about blockquote{margin:28px 0 0;padding:0;font-family:var(--display);font-weight:500;font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.45;color:var(--sand);max-width:30ch}
 .creds{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
@@ -282,6 +293,7 @@ footer a:hover{color:var(--ink)}
   .rv.pre{opacity:1;transform:none}
 }
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -334,7 +346,6 @@ footer a:hover{color:var(--ink)}
   <div class="wrap t">
     <div class="head rv">
       <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">שירותים</span>
       <h2>מה אני בונה</h2>
       <p class="lede">כל עבודה מתחילה באפיון של התהליך, ורק אחר כך בבנייה.</p>
     </div>
@@ -342,7 +353,6 @@ footer a:hover{color:var(--ink)}
     <ol class="svcs">
       <li class="svc rv">
         <div class="svc-head">
-          <span class="num">01</span>
           <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18.5l1.2-3.6A7.5 7.5 0 1 1 8.6 18l-4.6.5z"/><path d="M9 10.5h6M9 13.5h4"/></svg></span>
           <h3 id="svc01-t">בוט בוואטסאפ</h3>
           <button type="button" class="more" aria-expanded="false" aria-controls="svc01"><span class="lbl">מידע נוסף</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
@@ -363,7 +373,6 @@ footer a:hover{color:var(--ink)}
       </li>
       <li class="svc rv" style="--d:60ms">
         <div class="svc-head">
-          <span class="num">02</span>
           <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><path d="M9.5 13.5v.01M14.5 13.5v.01"/><path d="M9.5 16.5h5"/><path d="M3 12.5v3M21 12.5v3"/></svg></span>
           <h3 id="svc02-t">אוטומציות ו-<bdi>AI</bdi></h3>
           <button type="button" class="more" aria-expanded="false" aria-controls="svc02"><span class="lbl">מידע נוסף</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
@@ -382,7 +391,6 @@ footer a:hover{color:var(--ink)}
       </li>
       <li class="svc rv" style="--d:120ms">
         <div class="svc-head">
-          <span class="num">03</span>
           <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 15l4-4 3 3 5-6"/><path d="M15 8h3v3"/></svg></span>
           <h3 id="svc03-t">ליווי עסקי</h3>
           <button type="button" class="more" aria-expanded="false" aria-controls="svc03"><span class="lbl">מידע נוסף</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
@@ -409,7 +417,6 @@ footer a:hover{color:var(--ink)}
   <div class="wrap t">
     <div class="head rv">
       <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">בדיקה חינמית</span>
       <h2>איך העסק שלכם מופיע בגוגל מפות?</h2>
     </div>
     <div class="scan-card rv">
@@ -430,7 +437,6 @@ footer a:hover{color:var(--ink)}
   <div class="wrap t">
     <div class="head rv">
       <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">איך מתחילים</span>
       <h2>משיחה קצרה לתוכנית עבודה</h2>
     </div>
     <ol class="path">
@@ -447,7 +453,6 @@ footer a:hover{color:var(--ink)}
     <div class="about-grid">
       <div class="portrait-wrap rv"><img class="portrait" src="img/roei.webp" alt="רועי גרימברג" width="480" height="600" loading="lazy"></div>
       <div class="head rv" style="--d:80ms">
-        <span class="eyebrow">מי אני</span>
         <h2>רועי גרימברג</h2>
         <p class="body">מהנדס ומפתח שמלווה עסקים קטנים בטכנולוגיה, אוטומציה ו-<bdi>AI</bdi>, וגם באסטרטגיה ובצמיחה עסקית. אני מתחיל מהכלים שכבר קיימים, מפתח חדשים רק כשבאמת צריך, ומסביר כל פתרון בשפה פשוטה.</p>
         <blockquote>היום כל אחד יכול להרים מערכת בכמה שעות. החלק הקשה הוא להחליט מה המערכת צריכה לעשות.</blockquote>
@@ -467,7 +472,6 @@ footer a:hover{color:var(--ink)}
   <div class="wrap t">
     <div class="head rv">
       <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">מהשטח</span>
       <h2>סיפורים מהשטח</h2>
     </div>
     <div class="cases">
@@ -506,7 +510,6 @@ footer a:hover{color:var(--ink)}
   <div class="wrap t">
     <div class="head rv">
       <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">שאלות נפוצות</span>
       <h2>מה שבעלי עסקים שואלים לפני שמתחילים</h2>
     </div>
     <div class="faq-list">
@@ -526,7 +529,6 @@ footer a:hover{color:var(--ink)}
   <div class="wrap t">
     <div class="head rv">
       <span class="node end" aria-hidden="true"></span>
-      <span class="eyebrow">הצעד הראשון</span>
       <h2>בואו נתחיל בשיחה</h2>
       <p class="lede">שיחת היכרות של חצי שעה, ללא תשלום, בזמן שנוח לכם.</p>
       <div class="cta-row">
@@ -795,6 +797,13 @@ footer a:hover{color:var(--ink)}
       setTimeout(rebuild,520);
     });
   });
+
+  /* "How to start": light the three steps in order when the list comes into view */
+  var pathEl=document.querySelector('.path');
+  if(pathEl){
+    if(reduce || !('IntersectionObserver' in window)){ pathEl.classList.add('play'); }
+    else{ var po=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ setTimeout(function(){ pathEl.classList.add('play'); },350); po.disconnect(); } },{threshold:.45}); po.observe(pathEl); }
+  }
   /* Source attribution: keep utm_source for this visit, pass it to /book and tag the WhatsApp message */
   var src='';
   try{ var q=new URLSearchParams(location.search).get('utm_source'); if(q){ sessionStorage.setItem('utm_source',q); } src=q||sessionStorage.getItem('utm_source')||''; }catch(e){}
