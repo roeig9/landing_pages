@@ -132,6 +132,16 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;line-height:1.15;letter-
 .pains h3{font-family:var(--display);font-weight:700;font-size:1.5rem}
 .pains p{color:var(--muted)}
 
+/* start path */
+.path{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.path li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:26px}
+.path h3{font-family:var(--display);font-weight:700;font-size:1.45rem;margin:14px 0 8px}
+.path p{color:var(--muted)}
+.station .price{margin:14px 0 0;font-family:var(--ui);font-weight:700;color:var(--ink)}
+.todo{margin-top:12px;border:1.5px dashed var(--olive);border-radius:12px;padding:8px 12px;color:var(--olive);font-size:.92rem}
+.scan-link{margin-top:22px;color:var(--muted)}
+.scan-link a{color:var(--olive)}
+@media (max-width:900px){.path{grid-template-columns:1fr}}
 /* stations */
 .stations{list-style:none;margin:56px 0 0;padding:0;display:grid;gap:22px}
 .station{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,.9fr);gap:28px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:30px;transition:border-color .25s var(--ease),transform .25s var(--ease)}
@@ -261,6 +271,7 @@ footer a:hover{color:var(--ink)}
     <a class="brand" href="/">רועי גרימברג<small>ליווי טכנולוגי ועסקי לעסקים קטנים</small></a>
     <nav aria-label="ניווט ראשי">
       <a href="#layers">שירותים</a>
+      <a href="#start">איך מתחילים</a>
       <a href="#about">מי אני</a>
       <a href="#faq">שאלות</a>
       <a class="btn sm" href="/book?from=home-header">לתיאום שיחה</a>
@@ -317,67 +328,56 @@ footer a:hover{color:var(--ink)}
   <div class="wrap t">
     <div class="head rv">
       <span class="node" aria-hidden="true"></span>
-      <span class="eyebrow">שלוש שכבות, וליווי לאורך הדרך</span>
+      <span class="eyebrow">מה אני בונה</span>
       <h2>בונים לפי מה שהעסק שלכם צריך</h2>
-      <p class="lede">השכבות בנויות זו על גבי זו. כל עסק בוחר את נקודת הפתיחה שמתאימה לו, ומתקדם משם בקצב שלו.</p>
+      <p class="lede">כל עסק מתחיל מנקודה אחרת. אפשר לבחור דבר אחד, ולהוסיף בהמשך.</p>
     </div>
 
     <ol class="stations">
       <li class="station rv">
         <span class="num">01</span>
         <div>
-          <span class="tag">אבחון</span>
-          <h3>פגישת אבחון</h3>
-          <p>פגישה מעמיקה מול נתוני ה-<bdi>CRM</bdi> שלכם: מה הנתונים מלמדים על העסק, ואילו תהליכים מנוהלים היום ידנית.</p>
-          <div class="gets"><b>מה מקבלים</b>מפת אוטומציות מסודרת, שאותה אפשר ליישם בשכבה 2, וצעדים עסקיים לטווח הקצר והארוך.</div>
+          <span class="tag">בוט בוואטסאפ</span>
+          <h3>עונה ללקוחות, גם כשאתם עסוקים</h3>
+          <p>עונה על שאלות חוזרות, קובע פגישות ביומן, ומעביר אליכם רק את מה שדורש אתכם. נבנה לפי שאלון קצר שאתם ממלאים.</p>
         </div>
-        <ul class="ticks side">
-          <li>אפיון התהליכים בעסק: איך פנייה הופכת ללקוח, ואיפה היא נתקעת</li>
-          <li>היכרות עם העסק: קהל הלקוחות, המטרות, סגנון התקשורת והאתגרים</li>
-          <li>מיפוי משימות תפעוליות חוזרות שאפשר להעביר לאוטומציה</li>
-          <li>תמהיל השירותים והמוצרים, והיקף ההכנסה החוזרת</li>
-          <li>ניתוח יחסי המרה ונקודות נטישה של לקוחות</li>
-          <li>גיבוש אסטרטגיה ובניית תוכנית עסקית</li>
-        </ul>
+        <div class="side">
+          <div class="gets"><b>מתאים כש…</b>הוואטסאפ מלא באותן שאלות על מחירים, שעות וזמינות.</div>
+          <p class="price">1,000&nbsp;₪ הקמה, ועוד 250&nbsp;₪ לחודש לתחזוקה ועדכונים</p>
+        </div>
       </li>
       <li class="station rv">
         <span class="num">02</span>
         <div>
-          <span class="tag">הטמעה</span>
-          <h3>ה-<bdi>CRM</bdi> במלוא היכולות</h3>
-          <p>מיצוי מלא של ה-<bdi>CRM</bdi> ומערכות הניהול הקיימות: הטמעת הכלים המובנים והפקת המרב מהם, בהתאמה למטרות העסקיות שלכם.</p>
-          <div class="gets"><b>מה מקבלים</b>מערכת שמנהלת את התהליכים השוטפים באופן אוטומטי מהיום הראשון.</div>
+          <span class="tag"><bdi>CRM</bdi> ומעקב לידים</span>
+          <h3>כל ליד נרשם, אף לקוח לא נשכח</h3>
+          <p>לידים מהאתר, מהטפסים ומהרשתות נכנסים ישר ל-<bdi>CRM</bdi>, ותזכורות על הצעות מחיר, חידושים וגבייה נקבעות לבד.</p>
         </div>
-        <ul class="ticks side">
-          <li>קליטת לידים מהאתר, מטפסים ומהרשתות החברתיות ישירות ל-<bdi>CRM</bdi></li>
-          <li>אוטומציות למעקב אחרי לידים והצעות מחיר, חידושים, תזכורות וגבייה</li>
-          <li>חיבור וואטסאפ עסקי וסוכן <bdi>AI</bdi> בשפה של העסק</li>
-        </ul>
+        <div class="side">
+          <div class="gets"><b>מתאים כש…</b>הלידים מפוזרים בין וואטסאפ, פתקים ואקסל.</div>
+        </div>
       </li>
       <li class="station rv">
         <span class="num">03</span>
         <div>
-          <span class="tag">הרחבה</span>
-          <h3>פיתוח בהתאמה אישית</h3>
-          <p>פיתוח פתרונות לפי הצרכים הספציפיים שלכם, וחיבור ה-<bdi>CRM</bdi> למערכות שאתם עובדים איתן היום.</p>
-          <div class="gets"><b>מה מקבלים</b>פתרון שנבנה סביב העסק שלכם ומתחבר למערכות שכבר יש לכם.</div>
+          <span class="tag">אוטומציות ופיתוח</span>
+          <h3>המערכות שכבר יש לכם, עובדות יחד</h3>
+          <p>חיבור בין מערכות, טפסים ייעודיים ודשבורד ניהולי. פיתוח של משהו חדש רק כשהכלים הקיימים לא מתאימים.</p>
         </div>
-        <ul class="ticks side">
-          <li>דשבורד ניהולי מותאם אישית: תמונת מצב של העסק במבט אחד</li>
-          <li>אינטגרציה עם יומן, מערכות דיוור, הנהלת חשבונות וסוכני <bdi>AI</bdi></li>
-          <li>פיתוח כלים ייעודיים לעסק, כשהכלים הקיימים לא מספיקים</li>
-        </ul>
+        <div class="side">
+          <div class="gets"><b>מתאים כש…</b>אותו מידע מוקלד ידנית בשתי מערכות, או שמצב העסק מתברר רק בסוף החודש.</div>
+        </div>
       </li>
       <li class="station rv">
         <span class="num">04</span>
         <div>
-          <span class="tag">ליווי שוטף</span>
+          <span class="tag">ליווי עסקי</span>
           <h3>ממשיכים יחד אחרי ההטמעה</h3>
-          <p>תחזוקה, נתונים וליווי עסקי בתמחור, בשימור לקוחות ובקמפיינים, בקצב שמתאים לעסק.</p>
+          <p>ניתוח לידים, מחירון ומבצעים, ותחזוקה של המערכות, בקצב שמתאים לעסק.</p>
         </div>
         <div class="plans side">
-          <div class="plan"><h4>ליווי חודשי</h4><p>פגישת נתונים חודשית, תחזוקת האוטומציות ומענה בוואטסאפ.</p><small>מתאים לליווי קבוע לאורך זמן</small></div>
-          <div class="plan"><h4>ליווי שבועי</h4><p>פגישה שבועית, ליווי צמוד בוואטסאפ ומעקב יעדים.</p><small>לתקופה אינטנסיבית של 3 חודשים, ואחריה מעבר לליווי חודשי</small></div>
+          <div class="plan"><h4>ליווי חודשי</h4><p>פגישת נתונים חודשית ומענה בוואטסאפ.</p></div>
+          <div class="plan"><h4>ליווי שבועי</h4><p>פגישה שבועית וליווי צמוד, לרוב ל-3 חודשים.</p></div>
         </div>
       </li>
     </ol>
@@ -386,6 +386,21 @@ footer a:hover{color:var(--ink)}
       <span class="lbl">כלים שאני עובד איתם</span>
       <span class="pill">n8n</span><span class="pill">Boostapp</span><span class="pill">Make</span><span class="pill">Softr</span><span class="pill">ClickUp</span><span class="pill">WhatsApp Business</span><span class="pill">Gmail</span><span class="pill">Google Sheets</span><span class="pill">Facebook</span><span class="pill">Instagram</span><span class="pill">Claude</span>
     </div>
+  </div>
+</section>
+
+<section id="start">
+  <div class="wrap t">
+    <div class="head rv">
+      <span class="node" aria-hidden="true"></span>
+      <span class="eyebrow">איך מתחילים</span>
+      <h2>משיחה קצרה לתוכנית עבודה</h2>
+    </div>
+    <ol class="path">
+      <li class="rv"><span class="num">01</span><h3>שיחת היכרות</h3><p>חצי שעה, ללא תשלום. מספרים לי על העסק, ואני מסביר מה אני עושה ואיך זה יכול להיראות אצלכם.</p></li>
+      <li class="rv" style="--d:60ms"><span class="num">02</span><h3>פגישת אבחון</h3><p>אני מגיע מוכן: לפני הפגישה אתם משתפים נתונים, ואני לומד אותם. בפגישה מתעמקים בלידים, באוטומציות ובמחירון.</p><!-- TODO רועי: מחיר ומשך פגישת האבחון --><p class="todo">[להשלים: מחיר ומשך פגישת האבחון]</p></li>
+      <li class="rv" style="--d:120ms"><span class="num">03</span><h3>תוכנית עבודה</h3><p>יוצאים עם תוכנית: מה אתם עושים בעצמכם, ומה אני בונה בשבילכם, כמו דף נחיתה, חיבור <bdi>CRM</bdi>, אוטומציות או בדיקת נוכחות בגוגל.</p></li>
+    </ol>
   </div>
 </section>
 
@@ -429,7 +444,7 @@ footer a:hover{color:var(--ink)}
         <h2>רועי גרימברג</h2>
         <p class="body">מהנדס ומפתח שמלווה עסקים קטנים בטכנולוגיה, אוטומציה ו-<bdi>AI</bdi>, וגם באסטרטגיה ובצמיחה עסקית. אני מתחיל מהכלים שכבר קיימים, מפתח חדשים רק כשבאמת צריך, ומסביר כל פתרון בשפה פשוטה.</p>
         <blockquote>היום כל אחד יכול להרים מערכת בכמה שעות. החלק הקשה הוא להחליט מה המערכת צריכה לעשות.</blockquote>
-        <p class="body">איך ליד הופך ללקוח בעסק שלכם, איפה הוא נתקע, ומה בכלל שווה להפוך לאוטומטי. שם נמצא הניסיון שלי, באפיון תהליכים בעסקים מתחומים שונים, עוד לפני שבונים משהו. כל תהליך מתחיל בהיכרות אישית עם העסק ועם האנשים שבו.</p>
+        <p class="body">שם נמצא הניסיון שלי: לאפיין איך ליד הופך ללקוח בעסק שלכם ואיפה הוא נתקע, עוד לפני שבונים משהו.</p>
         <ul class="creds">
           <li><b><bdi>CRM</bdi> ואוטומציה</b><span>פרילנסר בתחום ה-<bdi>CRM</bdi>: פיתוח וחיבור מערכות בהתאמה לצרכי הלקוח</span></li>
           <li><b>עולם הכושר</b><span>כלים לניתוח תוכניות אימון, וליווי טכנולוגי ועסקי של סטודיו ומאמנים</span></li>
@@ -450,7 +465,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <div class="cases">
       <article class="case rv">
-        <span class="pill">layer 3</span>
+        <span class="pill">ClickUp · n8n · Softr</span>
         <h3>סוכנות קריאייטיב</h3>
         <p>כשהמערכת הקיימת מגבילה: הסוכנות עבדה עם <bdi>ClickUp</bdi>, שלא תמך בחלק מתהליכי העבודה שלה.</p>
         <ul class="ticks">
@@ -461,7 +476,7 @@ footer a:hover{color:var(--ink)}
         </ul>
       </article>
       <article class="case rv" style="--d:80ms">
-        <span class="pill">layers 1–2</span>
+        <span class="pill">Boostapp · WhatsApp</span>
         <h3>סטודיו ליוגה בדרום</h3>
         <p>מורה שמעבירה שלושה שיעורים בשבוע ועובדת עם <bdi>Boostapp</bdi>.</p>
         <ul class="ticks">
@@ -488,15 +503,14 @@ footer a:hover{color:var(--ink)}
       <h2>מה שבעלי עסקים שואלים לפני שמתחילים</h2>
     </div>
     <div class="faq-list">
-      <details><summary><span>מה זה אוטומציות, והאם העסק שלי צריך אותן?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אוטומציה היא פעולה שקורית לבד, בלי שמישהו צריך לזכור לעשות אותה. למשל: ליד חדש מהאתר נכנס ל-<bdi>CRM</bdi> ומקבל הודעה בוואטסאפ, הצעת מחיר שלא נחתמה מקבלת תזכורת, ולקוח שלא חזר חודשיים מקבל הודעה. אם יש בעסק משימות שחוזרות על עצמן כל יום או כל שבוע, ומשהו נופל בין הכיסאות כשאתם עסוקים, כנראה שאוטומציה תחסוך לכם זמן ולקוחות.</p></details>
-      <details><summary><span>אפשר לבנות את זה לבד עם <bdi>AI</bdi>. למה צריך אותך?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אפשר, ולפעמים זה גם יעבוד. אבל מערכת שנבנית על תהליך לא נכון רק מאיצה את הטעות: לידים שמגיעים למקום הלא נכון, תזכורות שמציקות ללקוחות, ונתונים שאף אחד לא משתמש בהם. רוב העבודה שלי היא להבין איך העסק עובד ולאפיין את התהליך, והבנייה מגיעה אחרי זה. מי שרוצה לבנות לבד יכול להתחיל רק מהאבחון ומהתוכנית.</p></details>
-      <details><summary><span>צריך <bdi>CRM</bdi> כשיש לי רק כמה לקוחות בחודש?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p><bdi>CRM</bdi> (מערכת לניהול לקוחות) משתלם כבר כשיש לידים שלא חוזרים אליהם בזמן, או לקוחות שנעלמים בלי שמישהו שם לב. גם עסק קטן מאבד לקוחות כשהמעקב נמצא בראש או בפתקים. אפשר להתחיל ממערכת פשוטה ולהוסיף לה יכולות בהדרגה.</p></details>
-      <details><summary><span>מה ההבדל בין אוטומציה לסוכן <bdi>AI</bdi>?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אוטומציה פועלת לפי כללים קבועים: כשקורה דבר מסוים, המערכת עושה פעולה מסוימת. סוכן <bdi>AI</bdi> מבין טקסט חופשי ועונה בשפה של העסק, למשל עונה בוואטסאפ על שאלות של לקוחות או מברר מה ליד מחפש. בדרך כלל משלבים את השניים: הסוכן מנהל את השיחה, והאוטומציה רושמת את הליד ב-<bdi>CRM</bdi> וקובעת תזכורת להמשך.</p></details>
-      <details><summary><span>יש לי כבר מערכת. צריך להחליף אותה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>ברוב המקרים לא. אני מתחיל מהכלים שכבר יש לכם, כמו <bdi>Boostapp</bdi>, <bdi>ClickUp</bdi>, <bdi>Google Sheets</bdi> או וואטסאפ עסקי, ומוציא מהם את המקסימום. פיתוח של משהו חדש מגיע רק כשהכלים הקיימים לא מתאימים לתהליכים הקיימים בעסק.</p></details>
-      <details><summary><span>מה ההבדל בין אוטומציה לפיתוח בהתאמה אישית?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אוטומציה מחברת ומפעילה כלים שכבר קיימים, כמו <bdi>CRM</bdi>, וואטסאפ ויומן, כך שהם יעבדו יחד לבד. פיתוח בהתאמה אישית הוא בנייה של משהו חדש שלא קיים במערכות שלכם: דשבורד ניהולי, טופס ייעודי או חיבור בין מערכות שלא מדברות זו עם זו. רוב העסקים מתחילים מאוטומציות, ומגיעים לפיתוח רק כשיש צורך.</p></details>
-      <details><summary><span>מה קורה בפגישת האבחון, ומה יוצא ממנה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>בפגישה עוברים יחד על הנתונים שכבר יש לכם: לקוחות, לידים, הכנסות ומה שקורה היום ידנית. מזהים איפה לקוחות נוטשים, ואילו משימות אפשר להעביר לאוטומציה. בסוף הפגישה יש לכם מפת אוטומציות מסודרת, תוכנית עסקית וצעדים לטווח הקצר והארוך, שאותם אפשר ליישם בעצמכם או בליווי שלי.</p></details>
-      <details><summary><span>אפשר להתחיל רק מאבחון, בלי להתחייב להמשך?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>כן. כל שכבה עומדת בפני עצמה, וכל עסק בוחר מאיפה להתחיל ומתקדם בקצב שלו.</p></details>
-      <details><summary><span>כמה זה עולה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות ללא תשלום. המחיר נקבע לפי היקף עבודת הפיתוח הנדרשת, או לפי מסגרת הליווי שבוחרים: ליווי חודשי או ליווי שבועי.</p></details>
+      <details><summary><span>מה ההבדל בין שיחת היכרות לפגישת אבחון?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. לפגישת האבחון אני מגיע מוכן, אחרי שעברתי על נתונים ששיתפתם, ובה מתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה.</p></details>
+      <details><summary><span>מה זה אוטומציות, והאם העסק שלי צריך אותן?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אוטומציה היא פעולה שקורית לבד, בלי שמישהו צריך לזכור לעשות אותה. למשל: ליד חדש מהאתר נכנס ל-<bdi>CRM</bdi> ומקבל הודעה בוואטסאפ, והצעת מחיר שלא נחתמה מקבלת תזכורת. אם משהו נופל בין הכיסאות כשאתם עסוקים, כנראה שאוטומציה תחסוך לכם זמן ולקוחות.</p></details>
+      <details><summary><span>אפשר לבנות את זה לבד עם <bdi>AI</bdi>. למה צריך אותך?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אפשר, ולפעמים זה גם יעבוד. אבל מערכת שנבנית על תהליך לא נכון רק מאיצה את הטעות. רוב העבודה היא להבין איך העסק עובד ולאפיין את התהליך, והבנייה מגיעה אחרי זה. מי שרוצה לבנות לבד יכול להסתפק בפגישת האבחון ובתוכנית.</p></details>
+      <details><summary><span>יש לי כבר מערכת. צריך להחליף אותה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>ברוב המקרים לא. אני מתחיל מהכלים שכבר יש לכם, כמו <bdi>Boostapp</bdi>, <bdi>ClickUp</bdi>, <bdi>Google Sheets</bdi> או וואטסאפ עסקי, ומוציא מהם את המקסימום.</p></details>
+      <details><summary><span>איך נבנה הבוט בוואטסאפ?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>ממלאים שאלון קצר על העסק: שירותים, מחירים, שעות, ומה הבוט לא עונה. מהתשובות אני בונה את הבוט, אתם בודקים ומאשרים את התשובות שלו, ורק אז מחברים אותו לוואטסאפ של העסק.</p></details>
+      <details><summary><span>מה קורה כשהבוט לא יודע לענות?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>הוא לא ממציא. הוא אומר לפונה שתחזרו אליו, ושולח לכם התראה עם הפרטים ומה נשאל. גם נושאים שבחרתם מראש, כמו בקשות להנחה או תלונות, עוברים ישר אליכם.</p></details>
+      <details><summary><span>אפשר להתחיל רק מאבחון, בלי להתחייב להמשך?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>כן. התוכנית שיוצאת מהאבחון שלכם, ואפשר ליישם אותה לבד.</p></details>
+      <details><summary><span>כמה זה עולה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות ללא תשלום. בוט בוואטסאפ: 1,000&nbsp;₪ הקמה ועוד 250&nbsp;₪ לחודש. שאר העבודות מתומחרות לפי היקף, אחרי פגישת האבחון.</p></details>
     </div>
   </div>
 </section>
@@ -506,12 +520,13 @@ footer a:hover{color:var(--ink)}
     <div class="head rv">
       <span class="node end" aria-hidden="true"></span>
       <span class="eyebrow">הצעד הראשון</span>
-      <h2>בואו נתחיל מהנתונים שלכם</h2>
+      <h2>בואו נתחיל בשיחה</h2>
       <p class="lede">שיחת היכרות של חצי שעה, ללא תשלום, בזמן שנוח לכם.</p>
       <div class="cta-row">
         <a class="btn" href="/book?from=home-contact">לתיאום שיחת היכרות<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         <span class="alt-link">לא מצאתם זמן נוח? <a href="https://wa.me/972546240255?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A2%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%93%D7%A3%20%D7%94%D7%A0%D7%97%D7%99%D7%AA%D7%94%20%D7%95%D7%9C%D7%90%20%D7%9E%D7%A6%D7%90%D7%AA%D7%99%20%D7%96%D7%9E%D7%9F%20%D7%A0%D7%95%D7%97%20%D7%91%D7%99%D7%95%D7%9E%D7%9F.%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA.">שלחו לי הודעה בוואטסאפ</a></span>
       </div>
+      <p class="scan-link">עוד לא מוכנים לשיחה? <a href="/scan/">בדקו בחינם איך העסק שלכם מופיע בגוגל מפות</a></p>
     </div>
   </div>
 </section>
@@ -535,10 +550,18 @@ footer a:hover{color:var(--ink)}
  "mainEntity": [
   {
    "@type": "Question",
+   "name": "מה ההבדל בין שיחת היכרות לפגישת אבחון?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. לפגישת האבחון אני מגיע מוכן, אחרי שעברתי על נתונים ששיתפתם, ובה מתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה."
+   }
+  },
+  {
+   "@type": "Question",
    "name": "מה זה אוטומציות, והאם העסק שלי צריך אותן?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "אוטומציה היא פעולה שקורית לבד, בלי שמישהו צריך לזכור לעשות אותה. למשל: ליד חדש מהאתר נכנס ל-CRM ומקבל הודעה בוואטסאפ, הצעת מחיר שלא נחתמה מקבלת תזכורת, ולקוח שלא חזר חודשיים מקבל הודעה. אם יש בעסק משימות שחוזרות על עצמן כל יום או כל שבוע, ומשהו נופל בין הכיסאות כשאתם עסוקים, כנראה שאוטומציה תחסוך לכם זמן ולקוחות."
+    "text": "אוטומציה היא פעולה שקורית לבד, בלי שמישהו צריך לזכור לעשות אותה. למשל: ליד חדש מהאתר נכנס ל-CRM ומקבל הודעה בוואטסאפ, והצעת מחיר שלא נחתמה מקבלת תזכורת. אם משהו נופל בין הכיסאות כשאתם עסוקים, כנראה שאוטומציה תחסוך לכם זמן ולקוחות."
    }
   },
   {
@@ -546,23 +569,7 @@ footer a:hover{color:var(--ink)}
    "name": "אפשר לבנות את זה לבד עם AI. למה צריך אותך?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "אפשר, ולפעמים זה גם יעבוד. אבל מערכת שנבנית על תהליך לא נכון רק מאיצה את הטעות: לידים שמגיעים למקום הלא נכון, תזכורות שמציקות ללקוחות, ונתונים שאף אחד לא משתמש בהם. רוב העבודה שלי היא להבין איך העסק עובד ולאפיין את התהליך, והבנייה מגיעה אחרי זה. מי שרוצה לבנות לבד יכול להתחיל רק מהאבחון ומהתוכנית."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "צריך CRM כשיש לי רק כמה לקוחות בחודש?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "CRM (מערכת לניהול לקוחות) משתלם כבר כשיש לידים שלא חוזרים אליהם בזמן, או לקוחות שנעלמים בלי שמישהו שם לב. גם עסק קטן מאבד לקוחות כשהמעקב נמצא בראש או בפתקים. אפשר להתחיל ממערכת פשוטה ולהוסיף לה יכולות בהדרגה."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "מה ההבדל בין אוטומציה לסוכן AI?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "אוטומציה פועלת לפי כללים קבועים: כשקורה דבר מסוים, המערכת עושה פעולה מסוימת. סוכן AI מבין טקסט חופשי ועונה בשפה של העסק, למשל עונה בוואטסאפ על שאלות של לקוחות או מברר מה ליד מחפש. בדרך כלל משלבים את השניים: הסוכן מנהל את השיחה, והאוטומציה רושמת את הליד ב-CRM וקובעת תזכורת להמשך."
+    "text": "אפשר, ולפעמים זה גם יעבוד. אבל מערכת שנבנית על תהליך לא נכון רק מאיצה את הטעות. רוב העבודה היא להבין איך העסק עובד ולאפיין את התהליך, והבנייה מגיעה אחרי זה. מי שרוצה לבנות לבד יכול להסתפק בפגישת האבחון ובתוכנית."
    }
   },
   {
@@ -570,23 +577,23 @@ footer a:hover{color:var(--ink)}
    "name": "יש לי כבר מערכת. צריך להחליף אותה?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "ברוב המקרים לא. אני מתחיל מהכלים שכבר יש לכם, כמו Boostapp, ClickUp, Google Sheets או וואטסאפ עסקי, ומוציא מהם את המקסימום. פיתוח של משהו חדש מגיע רק כשהכלים הקיימים לא מתאימים לתהליכים הקיימים בעסק."
+    "text": "ברוב המקרים לא. אני מתחיל מהכלים שכבר יש לכם, כמו Boostapp, ClickUp, Google Sheets או וואטסאפ עסקי, ומוציא מהם את המקסימום."
    }
   },
   {
    "@type": "Question",
-   "name": "מה ההבדל בין אוטומציה לפיתוח בהתאמה אישית?",
+   "name": "איך נבנה הבוט בוואטסאפ?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "אוטומציה מחברת ומפעילה כלים שכבר קיימים, כמו CRM, וואטסאפ ויומן, כך שהם יעבדו יחד לבד. פיתוח בהתאמה אישית הוא בנייה של משהו חדש שלא קיים במערכות שלכם: דשבורד ניהולי, טופס ייעודי או חיבור בין מערכות שלא מדברות זו עם זו. רוב העסקים מתחילים מאוטומציות, ומגיעים לפיתוח רק כשיש צורך."
+    "text": "ממלאים שאלון קצר על העסק: שירותים, מחירים, שעות, ומה הבוט לא עונה. מהתשובות אני בונה את הבוט, אתם בודקים ומאשרים את התשובות שלו, ורק אז מחברים אותו לוואטסאפ של העסק."
    }
   },
   {
    "@type": "Question",
-   "name": "מה קורה בפגישת האבחון, ומה יוצא ממנה?",
+   "name": "מה קורה כשהבוט לא יודע לענות?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "בפגישה עוברים יחד על הנתונים שכבר יש לכם: לקוחות, לידים, הכנסות ומה שקורה היום ידנית. מזהים איפה לקוחות נוטשים, ואילו משימות אפשר להעביר לאוטומציה. בסוף הפגישה יש לכם מפת אוטומציות מסודרת, תוכנית עסקית וצעדים לטווח הקצר והארוך, שאותם אפשר ליישם בעצמכם או בליווי שלי."
+    "text": "הוא לא ממציא. הוא אומר לפונה שתחזרו אליו, ושולח לכם התראה עם הפרטים ומה נשאל. גם נושאים שבחרתם מראש, כמו בקשות להנחה או תלונות, עוברים ישר אליכם."
    }
   },
   {
@@ -594,7 +601,7 @@ footer a:hover{color:var(--ink)}
    "name": "אפשר להתחיל רק מאבחון, בלי להתחייב להמשך?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "כן. כל שכבה עומדת בפני עצמה, וכל עסק בוחר מאיפה להתחיל ומתקדם בקצב שלו."
+    "text": "כן. התוכנית שיוצאת מהאבחון שלכם, ואפשר ליישם אותה לבד."
    }
   },
   {
@@ -602,7 +609,7 @@ footer a:hover{color:var(--ink)}
    "name": "כמה זה עולה?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "שיחת ההיכרות ללא תשלום. המחיר נקבע לפי היקף עבודת הפיתוח הנדרשת, או לפי מסגרת הליווי שבוחרים: ליווי חודשי או ליווי שבועי."
+    "text": "שיחת ההיכרות ללא תשלום. בוט בוואטסאפ: 1,000 ₪ הקמה ועוד 250 ₪ לחודש. שאר העבודות מתומחרות לפי היקף, אחרי פגישת האבחון."
    }
   }
  ]
@@ -616,7 +623,7 @@ footer a:hover{color:var(--ink)}
  "name": "רועי גרימברג",
  "alternateName": "Roei Grimberg",
  "url": "https://roeigrimberg.com/",
- "description": "ליווי טכנולוגי ועסקי לעסקים קטנים: אבחון, הטמעה של ה-CRM והמערכות הקיימות, אוטומציות ופיתוח בהתאמה אישית.",
+ "description": "ליווי טכנולוגי ועסקי לעסקים קטנים: בוט בוואטסאפ, CRM ומעקב לידים, אוטומציות וליווי עסקי.",
  "telephone": "+972546240255",
  "inLanguage": "he",
  "hasMap": "https://maps.google.com/?cid=18426570419320725720",
@@ -656,6 +663,20 @@ footer a:hover{color:var(--ink)}
    "@type": "Offer",
    "itemOffered": {
     "@type": "Service",
+    "name": "בוט וואטסאפ לעסקים"
+   }
+  },
+  {
+   "@type": "Offer",
+   "itemOffered": {
+    "@type": "Service",
+    "name": "שיחת היכרות"
+   }
+  },
+  {
+   "@type": "Offer",
+   "itemOffered": {
+    "@type": "Service",
     "name": "פגישת אבחון"
    }
   },
@@ -663,21 +684,21 @@ footer a:hover{color:var(--ink)}
    "@type": "Offer",
    "itemOffered": {
     "@type": "Service",
-    "name": "הטמעת CRM ואוטומציות"
+    "name": "הטמעת CRM ומעקב לידים"
    }
   },
   {
    "@type": "Offer",
    "itemOffered": {
     "@type": "Service",
-    "name": "פיתוח בהתאמה אישית"
+    "name": "אוטומציות ופיתוח בהתאמה אישית"
    }
   },
   {
    "@type": "Offer",
    "itemOffered": {
     "@type": "Service",
-    "name": "ליווי שוטף"
+    "name": "ליווי עסקי"
    }
   },
   {
