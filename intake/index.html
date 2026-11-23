@@ -77,7 +77,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
 </head>
 <body>
 <div class="band">
-  <header><div class="wrap"><a class="brand" href="https://roeigrimberg.netlify.app/">רועי גרימברג<span>ליווי טכנולוגי ועסקי לעסקים קטנים</span></a></div></header>
+  <header><div class="wrap"><a class="brand" href="https://roeigrimberg.com/">רועי גרימברג<span>ליווי טכנולוגי ועסקי לעסקים קטנים</span></a></div></header>
   <div class="wrap hero">
     <span class="eyebrow">שאלון היכרות</span>
     <h1>מה הבוט צריך לדעת על העסק שלך</h1>
@@ -211,7 +211,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
     <div class="hp" aria-hidden="true"><label for="company_site">אתר החברה</label><input type="text" id="company_site" tabindex="-1" autocomplete="off"></div>
 
     <div class="consent">
-      <label><input type="checkbox" id="consent"> <span>אני מאשר/ת לשמור את הפרטים כדי לחזור אליי ולבנות את המענה האוטומטי, לפי <a href="https://roeigrimberg.netlify.app/privacy" target="_blank" rel="noopener">מדיניות הפרטיות</a>. <span class="req">*</span></span></label>
+      <label><input type="checkbox" id="consent"> <span>אני מאשר/ת לשמור את הפרטים כדי לחזור אליי ולבנות את המענה האוטומטי, לפי <a href="https://roeigrimberg.com/privacy" target="_blank" rel="noopener">מדיניות הפרטיות</a>. <span class="req">*</span></span></label>
     </div>
 
     <button type="submit" class="btn" id="send">לשלוח את השאלון</button>
@@ -222,7 +222,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
   <div class="done" id="done" role="status">
     <h2>קיבלתי, תודה!</h2>
     <p>אעבור על השאלון לפני השיחה, ובשיחה נשלים יחד את מה שחסר ונחליט מה הבוט עונה ומה הוא מעביר אליך.</p>
-    <p style="margin:18px 0"><a class="btn" id="bookLink" href="https://roeigrimberg.netlify.app/book?from=intake" style="text-decoration:none">לקביעת שיחה</a></p>
+    <p style="margin:18px 0"><a class="btn" id="bookLink" href="https://roeigrimberg.com/book?from=intake" style="text-decoration:none">לקביעת שיחה</a></p>
     <p style="color:var(--muted);font-size:1rem">אפשר לקבוע כבר עכשיו, לכל מועד החל מעוד יומיים. אם נוח יותר, אפשר גם לחכות למייל ממני עם הצעה לזמן.</p>
     <p>רועי גרימברג</p>
   </div>
@@ -343,7 +343,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
       if (!res.ok) throw new Error(res.status);
       try { localStorage.removeItem(KEY); } catch (e2) {}
       if (typeof gtag === 'function') gtag('event', 'intake_submit', { source: d.source || 'direct' });
-      document.getElementById('bookLink').href = 'https://roeigrimberg.netlify.app/book?from=intake&biz=' + encodeURIComponent(d.business.name);
+      document.getElementById('bookLink').href = 'https://roeigrimberg.com/book?from=intake&biz=' + encodeURIComponent(d.business.name);
       form.style.display = 'none';
       document.getElementById('done').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -3,4 +3,4 @@ Allow: /
 Disallow: /report-assets/
 Disallow: /book
 
-Sitemap: https://roeigrimberg.netlify.app/sitemap.xml
+Sitemap: https://roeigrimberg.com/sitemap.xml
