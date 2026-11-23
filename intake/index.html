@@ -58,7 +58,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
 .add:hover{background:var(--glow)}
 .checks label,.radios label{font-weight:400;display:flex;gap:10px;align-items:flex-start;margin:0 0 8px}
 .checks input,.radios input{margin-top:6px;accent-color:var(--ok);width:18px;height:18px;flex:none}
-.radios .q{font-weight:700;font-size:1rem;display:block;margin-bottom:6px}
+.radios .q,.checks .q{font-weight:700;font-size:1rem;display:block;margin-bottom:6px}
 .req{color:var(--bad)}
 .consent{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 26px;margin:0 0 24px}
 .consent label{font-weight:400;display:flex;gap:10px;align-items:flex-start;margin:0}
@@ -160,6 +160,22 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
       <div class="f"><label for="g_other">עוד משהו על המטרה של הבוט</label><textarea id="g_other" data-k="goal.other"></textarea></div>
     </div>
 
+    <div class="card" role="group" aria-label="המספר של הבוט">
+      <h2>המספר של הבוט</h2>
+      <p class="why">הבוט עונה לכל מי שכותב למספר שמחובר אליו. כאן מחליטים לאיזה מספר, ומתי הוא לא עונה.</p>
+      <div class="f radios"><span class="q">איזה מספר יחובר לבוט?</span>
+        <label><input type="radio" name="waNumber" value="מספר עסקי, רק לקוחות כותבים אליו"> מספר עסקי, רק לקוחות כותבים אליו</label>
+        <label><input type="radio" name="waNumber" value="מספר שמשמש גם לשיחות אישיות"> מספר שמשמש גם לשיחות אישיות</label>
+        <label><input type="radio" name="waNumber" value="אין עדיין, צריך מספר חדש"> אין עדיין, צריך מספר חדש</label>
+      </div>
+      <div class="checks f" id="silenceItems"><span class="q">מתי הבוט לא עונה?</span>
+        <label><input type="checkbox" value="למי ששמור אצלי באנשי הקשר"> למי ששמור אצלי באנשי הקשר</label>
+        <label><input type="checkbox" value="בשיחה שבה אני עונה בעצמי"> בשיחה שבה אני עונה בעצמי</label>
+        <label><input type="checkbox" value="בשעות מסוימות"> בשעות מסוימות</label>
+      </div>
+      <div class="f"><label for="n_other">פרטים נוספים<span class="hint">למשל: הבוט עונה רק מחוץ לשעות הפעילות</span></label><textarea id="n_other" data-k="number.other"></textarea></div>
+    </div>
+
     <div class="card" role="group" aria-label="מה הבוט לא עונה, ומעביר אליכם">
       <h2>מה הבוט לא עונה, ומעביר אליכם</h2>
       <p class="why">על הנושאים האלה הבוט יגיד ללקוח שתחזרו אליו, וישלח לכם התראה.</p>
@@ -255,6 +271,9 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
     form.querySelectorAll('[data-k]').forEach(el => setPath(data, el.dataset.k, el.value.trim()));
     data.services = [...servicesEl.querySelectorAll('.service')].map(b => { const s = {}; b.querySelectorAll('[data-s]').forEach(el => { s[el.dataset.s] = el.value.trim(); }); return s; });
     data.faq = [...faqEl.querySelectorAll('.faq')].map(b => { const f = {}; b.querySelectorAll('[data-q]').forEach(el => { f[el.dataset.q] = el.value.trim(); }); return f; });
+    data.number = data.number || {};
+    data.number.type = (form.querySelector('input[name=waNumber]:checked') || {}).value || '';
+    data.number.silence = [...document.querySelectorAll('#silenceItems input:checked')].map(c => c.value);
     data.goal = data.goal || {};
     data.goal.items = [...document.querySelectorAll('#goalItems input:checked')].map(c => c.value);
     data.escalate = data.escalate || {};
@@ -277,6 +296,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
     faq.forEach(addFaq);
     if (!d) return;
     form.querySelectorAll('[data-k]').forEach(el => { const v = getPath(d, el.dataset.k); if (typeof v === 'string') el.value = v; });
+    if (d.number) { form.querySelectorAll('input[name=waNumber]').forEach(r => { r.checked = r.value === d.number.type; }); if (Array.isArray(d.number.silence)) document.querySelectorAll('#silenceItems input').forEach(c => { c.checked = d.number.silence.includes(c.value); }); }
     if (d.goal && Array.isArray(d.goal.items)) document.querySelectorAll('#goalItems input').forEach(c => { c.checked = d.goal.items.includes(c.value); });
     if (d.escalate && Array.isArray(d.escalate.items)) document.querySelectorAll('#escItems input').forEach(c => { c.checked = d.escalate.items.includes(c.value); });
     if (d.tone) {
