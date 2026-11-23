@@ -137,7 +137,7 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;line-height:1.15;letter-
 .path li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:26px}
 .path h3{font-family:var(--display);font-weight:700;font-size:1.45rem;margin:14px 0 8px}
 .path p{color:var(--muted)}
-.station .price{margin:14px 0 0;font-family:var(--ui);font-weight:700;color:var(--ink)}
+.station .price,.path .price{margin:14px 0 0;font-family:var(--ui);font-weight:700;color:var(--ink)}
 .todo{margin-top:12px;border:1.5px dashed var(--olive);border-radius:12px;padding:8px 12px;color:var(--olive);font-size:.92rem}
 .scan-link{margin-top:22px;color:var(--muted)}
 .scan-link a{color:var(--olive)}
@@ -376,11 +376,13 @@ footer a:hover{color:var(--ink)}
           <p>ניתוח לידים, מחירון ומבצעים, ותחזוקה של המערכות, בקצב שמתאים לעסק.</p>
         </div>
         <div class="plans side">
-          <div class="plan"><h4>ליווי חודשי</h4><p>פגישת נתונים חודשית ומענה בוואטסאפ.</p></div>
-          <div class="plan"><h4>ליווי שבועי</h4><p>פגישה שבועית וליווי צמוד, לרוב ל-3 חודשים.</p></div>
+          <div class="plan"><h4>ליווי חודשי</h4><p>פגישת נתונים חודשית ומענה בוואטסאפ.</p><small>500&nbsp;₪ לחודש</small></div>
+          <div class="plan"><h4>ליווי שבועי</h4><p>פגישה שבועית וליווי צמוד, לרוב ל-3 חודשים.</p><small>1,400&nbsp;₪ לחודש</small></div>
         </div>
       </li>
     </ol>
+    <!-- TODO רועי: המחירים כוללים מע״מ או לפני מע״מ? -->
+    <p class="todo">[להשלים: המחירים כוללים מע״מ, או לפני מע״מ]</p>
 
     <div class="tools rv" aria-label="כלים שאני עובד איתם">
       <span class="lbl">כלים שאני עובד איתם</span>
@@ -398,7 +400,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <ol class="path">
       <li class="rv"><span class="num">01</span><h3>שיחת היכרות</h3><p>חצי שעה, ללא תשלום. מספרים לי על העסק, ואני מסביר מה אני עושה ואיך זה יכול להיראות אצלכם.</p></li>
-      <li class="rv" style="--d:60ms"><span class="num">02</span><h3>פגישת אבחון</h3><p>אני מגיע מוכן: לפני הפגישה אתם משתפים נתונים, ואני לומד אותם. בפגישה מתעמקים בלידים, באוטומציות ובמחירון.</p><!-- TODO רועי: מחיר ומשך פגישת האבחון --><p class="todo">[להשלים: מחיר ומשך פגישת האבחון]</p></li>
+      <li class="rv" style="--d:60ms"><span class="num">02</span><h3>פגישת אבחון</h3><p>אני מגיע מוכן: לפני הפגישה אתם משתפים נתונים, ואני לומד אותם. בפגישה מתעמקים בלידים, באוטומציות ובמחירון.</p><p class="price">500&nbsp;₪</p></li>
       <li class="rv" style="--d:120ms"><span class="num">03</span><h3>תוכנית עבודה</h3><p>יוצאים עם תוכנית: מה אתם עושים בעצמכם, ומה אני בונה בשבילכם, כמו דף נחיתה, חיבור <bdi>CRM</bdi>, אוטומציות או בדיקת נוכחות בגוגל.</p></li>
     </ol>
   </div>
@@ -510,7 +512,7 @@ footer a:hover{color:var(--ink)}
       <details><summary><span>איך נבנה הבוט בוואטסאפ?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>ממלאים שאלון קצר על העסק: שירותים, מחירים, שעות, ומה הבוט לא עונה. מהתשובות אני בונה את הבוט, אתם בודקים ומאשרים את התשובות שלו, ורק אז מחברים אותו לוואטסאפ של העסק.</p></details>
       <details><summary><span>מה קורה כשהבוט לא יודע לענות?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>הוא לא ממציא. הוא אומר לפונה שתחזרו אליו, ושולח לכם התראה עם הפרטים ומה נשאל. גם נושאים שבחרתם מראש, כמו בקשות להנחה או תלונות, עוברים ישר אליכם.</p></details>
       <details><summary><span>אפשר להתחיל רק מאבחון, בלי להתחייב להמשך?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>כן. התוכנית שיוצאת מהאבחון שלכם, ואפשר ליישם אותה לבד.</p></details>
-      <details><summary><span>כמה זה עולה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות ללא תשלום. בוט בוואטסאפ: 1,000&nbsp;₪ הקמה ועוד 250&nbsp;₪ לחודש. שאר העבודות מתומחרות לפי היקף, אחרי פגישת האבחון.</p></details>
+      <details><summary><span>כמה זה עולה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות ללא תשלום. פגישת אבחון: 500&nbsp;₪. בוט בוואטסאפ: 1,000&nbsp;₪ הקמה ועוד 250&nbsp;₪ לחודש. ליווי חודשי: 500&nbsp;₪ לחודש, וליווי שבועי: 1,400&nbsp;₪ לחודש. בניית מערכות ואוטומציות מתומחרת לפי היקף, אחרי פגישת האבחון.</p></details>
     </div>
   </div>
 </section>
@@ -609,7 +611,7 @@ footer a:hover{color:var(--ink)}
    "name": "כמה זה עולה?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "שיחת ההיכרות ללא תשלום. בוט בוואטסאפ: 1,000 ₪ הקמה ועוד 250 ₪ לחודש. שאר העבודות מתומחרות לפי היקף, אחרי פגישת האבחון."
+    "text": "שיחת ההיכרות ללא תשלום. פגישת אבחון: 500 ₪. בוט בוואטסאפ: 1,000 ₪ הקמה ועוד 250 ₪ לחודש. ליווי חודשי: 500 ₪ לחודש, וליווי שבועי: 1,400 ₪ לחודש. בניית מערכות ואוטומציות מתומחרת לפי היקף, אחרי פגישת האבחון."
    }
   }
  ]
