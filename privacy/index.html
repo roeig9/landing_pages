@@ -12,7 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@700&family=Assistant:wght@400;600;700&display=swap">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.skip{position:absolute;inset-inline-start:12px;top:-60px;background:#1F2933;color:#fff;padding:8px 14px;border-radius:8px;z-index:1000;font-weight:700;text-decoration:none}.skip:focus{top:12px}
+</style>
 <style>
 /* Layout: single reading column for a legal page, same tokens as the main site (teal accent, light neutrals). */
 :root{
@@ -53,6 +54,7 @@ footer{background:var(--bg-2);color:var(--muted);border-top:1px solid var(--line
 <link rel="canonical" href="https://roeigrimberg.com/privacy">
 </head>
 <body>
+<a class="skip" href="#main">דלג לתוכן</a>
 <header>
   <div class="wrap">
     <a class="brand" href="/">רועי גרימברג</a>
@@ -60,7 +62,7 @@ footer{background:var(--bg-2);color:var(--muted);border-top:1px solid var(--line
   </div>
 </header>
 
-<main>
+<main id="main">
   <div class="wrap">
     <span class="eyebrow">מדיניות פרטיות</span>
     <h1>איך אני שומר על המידע שלכם</h1>
@@ -125,7 +127,7 @@ footer{background:var(--bg-2);color:var(--muted);border-top:1px solid var(--line
 </main>
 
 <footer>
-  <div class="wrap">רועי גרימברג · ליווי טכנולוגי ועסקי לעסקים קטנים</div>
+  <div class="wrap">רועי גרימברג · ליווי טכנולוגי ועסקי לעסקים קטנים · <a href="/accessibility/">הצהרת נגישות</a></div>
 </footer>
 </body>
 </html>

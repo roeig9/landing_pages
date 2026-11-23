@@ -73,9 +73,11 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
 .done h2{font-size:1.6rem;margin-bottom:10px}
 .done p{margin:0 0 8px}
 .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;background:#1F2933;color:#fff;padding:8px 14px;border-radius:8px;z-index:1000;font-weight:700;text-decoration:none}.skip:focus{top:12px}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">דלג לתוכן</a>
 <div class="band">
   <header><div class="wrap"><a class="brand" href="https://roeigrimberg.com/">רועי גרימברג<span>ליווי טכנולוגי ועסקי לעסקים קטנים</span></a></div></header>
   <div class="wrap hero">
@@ -85,7 +87,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
     <p class="note">לוקח בערך 20 עד 30 דקות. מה שכתבתם נשמר בדפדפן הזה, אז אפשר לעצור ולחזור. מה שלא ידוע לכם עכשיו, אפשר להשאיר ריק ולהשלים בשיחה.</p>
   </div>
 </div>
-<main class="wrap">
+<main id="main" class="wrap">
   <form id="intake" novalidate>
     <div class="card" role="group" aria-label="העסק">
       <h2>העסק</h2>
@@ -227,6 +229,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
     <p>רועי גרימברג</p>
   </div>
 </main>
+<footer style="text-align:center;padding:24px 16px;font-size:.9rem;opacity:.85"><a href="/privacy/" style="color:inherit">מדיניות פרטיות</a> · <a href="/accessibility/" style="color:inherit">הצהרת נגישות</a></footer>
 
 <script>
 (function () {
@@ -243,11 +246,11 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
     d.className = 'item service';
     d.innerHTML =
       '<h3>שירות ' + (i + 1) + '</h3>' +
-      '<div class="f"><label>שם השירות</label><input type="text" data-s="name" value="' + esc(s.name) + '"></div>' +
-      '<div class="f"><label>תיאור קצר<span class="hint">מה זה, למי זה מתאים</span></label><textarea data-s="desc">' + esc(s.desc) + '</textarea></div>' +
-      '<div class="row2"><div class="f"><label>משך</label><input type="text" data-s="duration" value="' + esc(s.duration) + '"></div>' +
-      '<div class="f"><label>מחיר</label><input type="text" data-s="price" value="' + esc(s.price) + '"></div></div>' +
-      '<div class="f"><label>מה כלול במחיר</label><input type="text" data-s="included" value="' + esc(s.included) + '"></div>';
+      '<div class="f"><label>שם השירות</label><input type="text" data-s="name" aria-label="שם השירות" value="' + esc(s.name) + '"></div>' +
+      '<div class="f"><label>תיאור קצר<span class="hint">מה זה, למי זה מתאים</span></label><textarea data-s="desc" aria-label="תיאור קצר">' + esc(s.desc) + '</textarea></div>' +
+      '<div class="row2"><div class="f"><label>משך</label><input type="text" data-s="duration" aria-label="משך" value="' + esc(s.duration) + '"></div>' +
+      '<div class="f"><label>מחיר</label><input type="text" data-s="price" aria-label="מחיר" value="' + esc(s.price) + '"></div></div>' +
+      '<div class="f"><label>מה כלול במחיר</label><input type="text" data-s="included" aria-label="מה כלול במחיר" value="' + esc(s.included) + '"></div>';
     return d;
   }
   function faqBlock(i, f) {
@@ -256,8 +259,8 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--lime);bo
     d.className = 'item faq';
     d.innerHTML =
       '<h3>שאלה ' + (i + 1) + '</h3>' +
-      '<div class="f"><label>השאלה</label><input type="text" data-q="q" value="' + esc(f.q) + '"></div>' +
-      '<div class="f"><label>התשובה שלכם</label><textarea data-q="a">' + esc(f.a) + '</textarea></div>';
+      '<div class="f"><label>השאלה</label><input type="text" data-q="q" aria-label="השאלה" value="' + esc(f.q) + '"></div>' +
+      '<div class="f"><label>התשובה שלכם</label><textarea data-q="a" aria-label="התשובה שלכם">' + esc(f.a) + '</textarea></div>';
     return d;
   }
   function addService(s) { servicesEl.appendChild(serviceBlock(servicesEl.children.length, s)); }
