@@ -67,10 +67,9 @@ bdi{unicode-bidi:isolate}
 .top nav .btn{color:var(--on-cta)}
 
 /* buttons, pills */
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--ui);font-weight:700;font-size:1rem;text-decoration:none;border-radius:var(--r-pill);padding:14px 28px;background:var(--cta);color:var(--on-cta);border:0;cursor:pointer;transition:background .25s var(--ease),transform .25s var(--ease)}
-.btn:hover{background:var(--cta-hover);transform:translateY(-1px)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--ui);font-weight:700;font-size:1rem;text-decoration:none;border-radius:var(--r-pill);padding:14px 28px;background:var(--cta);color:var(--on-cta);border:0;cursor:pointer;min-height:44px;transition:background-color .2s var(--ease),transform .2s var(--ease)}
+.btn:hover{background:var(--cta-hover)}
 .btn svg{width:18px;height:18px;transition:transform .25s var(--ease)}
-.btn:hover svg{transform:translateX(-3px)}
 .btn.sm{padding:9px 18px;font-size:.92rem}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 .btn.ghost:hover{border-color:color-mix(in srgb,var(--olive) 55%,transparent);background:transparent}
@@ -134,9 +133,9 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;line-height:1.15;letter-
 
 .vat{margin-top:18px;color:var(--muted);font-size:.92rem}
 .path .note{font-size:.92rem;margin-top:4px}
-.path li{display:flex;flex-direction:column;align-items:flex-start}
-.path li>.btn{margin-top:auto}
-.path li>p{margin-bottom:18px}
+.path>li{display:flex;flex-direction:column;align-items:flex-start}
+.path>li>.btn{margin-top:auto}
+.path>li>p{margin-bottom:18px}
 .scan-card{margin-top:40px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:center;background:var(--surface);border:1px solid color-mix(in srgb,var(--olive) 40%,transparent);border-radius:var(--r-card);padding:clamp(26px,4vw,40px)}
 .scan-card .lede{margin:0}
 .scan-card .btn{margin-top:22px}
@@ -151,6 +150,7 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;line-height:1.15;letter-
 .svc h3{flex:1;font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,2.2vw,1.6rem);margin:0}
 .more{flex:none;display:inline-flex;align-items:center;gap:8px;font:600 .95rem var(--ui);color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:var(--r-pill);padding:9px 16px;cursor:pointer;transition:border-color .25s var(--ease),background .25s var(--ease)}
 .more:hover{border-color:var(--olive)}
+.more{min-height:44px;min-width:44px;justify-content:center}
 .more .chev{width:16px;height:16px;transition:transform .35s var(--ease)}
 .svc.open .more .chev{transform:rotate(180deg)}
 .svc-body{display:grid;grid-template-rows:1fr;transition:grid-template-rows .5s var(--ease)}
@@ -164,20 +164,35 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;line-height:1.15;letter-
 .svc-inner .price{margin:14px 0 0;font-family:var(--ui);font-weight:700;color:var(--ink)}
 @media (max-width:760px){ .svc-head{padding:16px 18px;gap:14px}.svc-inner{grid-template-columns:1fr;gap:16px;padding:0 18px}.svc.open .svc-inner{padding-bottom:20px}.svc h3{font-size:1.2rem}.more{padding:10px}.more .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
 /* path flow: 01 -> 02 -> 03 lights up in order, joined by a drawn line */
-.path li{position:relative}
+.path>li{position:relative}
 .path .num{position:relative;z-index:3;transition:background-color .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease)}
-.path li:not(:last-child)::after{content:"";position:absolute;z-index:2;top:41px;height:2px;inset-inline-start:76px;inset-inline-end:-40px;background:var(--olive);border-radius:2px;transform-origin:100% 50%;transition:transform .6s var(--ease)}
-.path li:nth-child(1) .num{transition-delay:.15s}
-.path li:nth-child(1)::after{transition-delay:.45s}
-.path li:nth-child(2) .num{transition-delay:1.05s}
-.path li:nth-child(2)::after{transition-delay:1.35s}
-.path li:nth-child(3) .num{transition-delay:1.95s}
+.path>li:not(:last-child)::after{content:"";position:absolute;z-index:2;top:41px;height:2px;inset-inline-start:76px;inset-inline-end:-40px;background:var(--olive);border-radius:2px;transform-origin:100% 50%;transition:transform .6s var(--ease)}
+.path>li:nth-child(1) .num{transition-delay:.15s}
+.path>li:nth-child(1)::after{transition-delay:.45s}
+.path>li:nth-child(2) .num{transition-delay:1.05s}
+.path>li:nth-child(2)::after{transition-delay:1.35s}
+.path>li:nth-child(3) .num{transition-delay:1.95s}
 .path.play .num,html:not(.js) .path .num{background:var(--olive);color:var(--on-cta);border-color:var(--olive)}
 .js .path:not(.play) li::after{transform:scaleX(0)}
-@media (max-width:900px){.path li:not(:last-child)::after{top:calc(100% - 14px);bottom:auto;height:58px;width:2px;inset-inline-start:45px;inset-inline-end:auto;transform-origin:50% 0}.js .path:not(.play) li::after{transform:scaleY(0)}}
+@media (max-width:900px){.path>li:not(:last-child)::after{top:calc(100% - 14px);bottom:auto;height:58px;width:2px;inset-inline-start:45px;inset-inline-end:auto;transform-origin:50% 0}.js .path:not(.play) li::after{transform:scaleY(0)}}
+/* polish: press feedback, hover only where hover exists, browser surfaces */
+.btn:active,.more:active{transform:scale(.97);transition-duration:.12s}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{transform:translateY(-1px)}
+  .btn:hover svg{transform:translateX(-3px)}
+  .btn:active{transform:translateY(-1px) scale(.97)}
+  .case:hover{transform:translateY(-2px)}
+}
+::selection{background:var(--olive-deep);color:var(--ink)}
+html{scrollbar-color:color-mix(in srgb,var(--olive) 40%,transparent) var(--bg);scrollbar-width:thin}
+a{text-underline-offset:.2em}
+input,textarea,select{caret-color:var(--olive);accent-color:var(--olive)}
+.price,.plan small,.hero time,.num{font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance}
+.path .prep{margin:0 0 14px;color:var(--ink)}
 /* start path */
 .path{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.path li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:26px}
+.path>li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:26px}
 .path h3{font-family:var(--display);font-weight:700;font-size:1.45rem;margin:14px 0 8px}
 .path p{color:var(--muted)}
 .todo{margin-top:12px;border:1.5px dashed var(--olive);border-radius:12px;padding:8px 12px;color:var(--olive);font-size:.92rem}
@@ -230,7 +245,7 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;line-height:1.15;letter-
 /* field */
 .cases{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:52px}
 .case{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:30px;transition:border-color .25s var(--ease),transform .25s var(--ease)}
-.case:hover{border-color:color-mix(in srgb,var(--olive) 45%,transparent);transform:translateY(-2px)}
+.case:hover{border-color:color-mix(in srgb,var(--olive) 45%,transparent)}
 .case h3{font-family:var(--display);font-size:1.6rem;margin:12px 0 8px}
 .case>p{color:var(--muted);margin-bottom:20px}
 .quotes{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;margin-top:22px}
@@ -441,7 +456,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <ol class="path">
       <li class="rv"><span class="num">01</span><h3>שיחת היכרות</h3><p>חצי שעה, ללא תשלום. מספרים לי על העסק, ואני מסביר מה אני עושה ואיך זה יכול להיראות אצלכם.</p><a class="btn sm" href="/book?from=home-path">לתיאום שיחת היכרות<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a></li>
-      <li class="rv" style="--d:60ms"><span class="num">02</span><h3>פגישת אבחון</h3><p>אני מגיע מוכן: לפני הפגישה אתם משתפים נתונים, ואני לומד אותם. בפגישה מתעמקים בלידים, באוטומציות ובמחירון.</p><p class="price">500&nbsp;₪ · שעה וחצי</p><p class="note">אם ממשיכים לבנייה, הסכום מקוזז מהמחיר.</p></li>
+      <li class="rv" style="--d:60ms"><span class="num">02</span><h3>פגישת אבחון</h3><p>אני מגיע מוכן. לפני הפגישה:</p><ul class="ticks prep"><li>אתם משתפים נתונים ואני לומד אותם</li><li>בדיקה של העסק בגוגל מפות</li><li>ניתוח <bdi>SEO</bdi> ו-<bdi>GEO</bdi> לאתר: איך מוצאים אתכם בגוגל ובכלי <bdi>AI</bdi></li></ul><p>בפגישה עוברים על הממצאים ומתעמקים בלידים, באוטומציות ובמחירון.</p><p class="price">500&nbsp;₪ · שעה וחצי</p><p class="note">אם ממשיכים לבנייה, הסכום מקוזז מהמחיר.</p></li>
       <li class="rv" style="--d:120ms"><span class="num">03</span><h3>תוכנית עבודה</h3><p>יוצאים עם אסטרטגיה לצמיחת העסק: מה אתם עושים בעצמכם, ומה אני בונה בשבילכם, כמו דף נחיתה, חיבור <bdi>CRM</bdi>, אוטומציות או בדיקת נוכחות בגוגל.</p><p class="price">המחיר לפי התוכנית שמסכימים עליה</p></li>
     </ol>
   </div>
@@ -513,7 +528,7 @@ footer a:hover{color:var(--ink)}
       <h2>מה שבעלי עסקים שואלים לפני שמתחילים</h2>
     </div>
     <div class="faq-list">
-      <details><summary><span>מה ההבדל בין שיחת היכרות לפגישת אבחון?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. פגישת האבחון נמשכת שעה וחצי, ואני מגיע אליה מוכן, אחרי שעברתי על נתונים ששיתפתם, ובה מתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה.</p></details>
+      <details><summary><span>מה ההבדל בין שיחת היכרות לפגישת אבחון?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. פגישת האבחון נמשכת שעה וחצי, ואני מגיע אליה מוכן: אחרי שעברתי על נתונים ששיתפתם, הרצתי בדיקה של העסק בגוגל מפות וניתוח SEO ו-GEO לאתר. בפגישה עוברים על הממצאים ומתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה.</p></details>
       <details><summary><span>מה זה אוטומציות, והאם העסק שלי צריך אותן?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אוטומציה היא פעולה שקורית לבד, בלי שמישהו צריך לזכור לעשות אותה. למשל: ליד חדש מהאתר נכנס ל-<bdi>CRM</bdi> ומקבל הודעה בוואטסאפ, והצעת מחיר שלא נחתמה מקבלת תזכורת. אם משהו נופל בין הכיסאות כשאתם עסוקים, כנראה שאוטומציה תחסוך לכם זמן ולקוחות.</p></details>
       <details><summary><span>למה לא לבנות את זה לבד עם <bdi>AI</bdi>?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>אפשר, ולפעמים זה גם יעבוד. אבל מערכת שנבנית על תהליך לא נכון רק מאיצה את הטעות. רוב העבודה היא להבין איך העסק עובד ולאפיין את התהליך, והבנייה מגיעה אחרי זה. מי שרוצה לבנות לבד יכול להסתפק בפגישת האבחון ובתוכנית.</p></details>
       <details><summary><span>יש לי כבר מערכת. צריך להחליף אותה?</span><span class="x" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></span></summary><p>ברוב המקרים לא. אני מתחיל מהכלים שכבר יש לכם, כמו <bdi>Boostapp</bdi>, <bdi>ClickUp</bdi>, <bdi>Google Sheets</bdi> או וואטסאפ עסקי, ומוציא מהם את המקסימום.</p></details>
@@ -562,7 +577,7 @@ footer a:hover{color:var(--ink)}
    "name": "מה ההבדל בין שיחת היכרות לפגישת אבחון?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. פגישת האבחון נמשכת שעה וחצי, ואני מגיע אליה מוכן, אחרי שעברתי על נתונים ששיתפתם, ובה מתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה."
+    "text": "שיחת ההיכרות היא חצי שעה ללא תשלום: מכירים, ואני מסביר מה אני עושה. פגישת האבחון נמשכת שעה וחצי, ואני מגיע אליה מוכן: אחרי שעברתי על נתונים ששיתפתם, הרצתי בדיקה של העסק בגוגל מפות וניתוח SEO ו-GEO לאתר. בפגישה עוברים על הממצאים ומתעמקים בלידים, באוטומציות ובמחירון. ממנה יוצאת תוכנית עבודה."
    }
   },
   {
